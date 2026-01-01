@@ -1,265 +1,564 @@
-// Charger les variables d'environnement depuis le fichier .env
-require('dotenv').config();
-
-const puppeteer = require('puppeteer');
 const admin = require('firebase-admin');
-const db = require('./firebase');  // Firebase Admin SDK
+const db = require('./firebase');
 
-// URLs
-const SSO_URL = 'https://educonnect.education.gouv.fr/idp/profile/SAML2/Redirect/SSO?execution=e1s2';
-const PROFILE_URL = 'https://moncompte.educonnect.education.gouv.fr/educt-self-service/profil/consultationProfil';
-const PRONOTE_URL = process.env.PRONOTE_URL || 'https://0840014j.index-education.net/pronote/parent.html?identifiant=t8tXBYNE6zG2s6Jr';
-
-// Récupérer les identifiants depuis les variables d'environnement
-const USERNAME = process.env.SSO_USERNAME;
-const PASSWORD = process.env.SSO_PASSWORD;
-
-// Fonction helper pour remplacer waitForTimeout
+// Fonction helper pour attendre
 const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-/**
- * Fonction pour détecter automatiquement les sélecteurs de formulaire (votre logique originale)
- */
-const detectFormSelectors = async (page) => {
-  console.log('🔍 Détection automatique des sélecteurs...');
-  
-  const selectors = await page.evaluate(() => {
-    const result = {
-      usernameSelectors: [],
-      passwordSelectors: [],
-      submitSelectors: []
-    };
-
-    // Chercher les champs username/email
-    const usernameInputs = document.querySelectorAll('input[type="text"], input[type="email"], input[name*="user"], input[id*="user"], input[placeholder*="identifiant"], input[placeholder*="utilisateur"]');
-    usernameInputs.forEach(input => {
-      if (input.id) result.usernameSelectors.push(`#${input.id}`);
-      if (input.name) result.usernameSelectors.push(`[name="${input.name}"]`);
-      if (input.className) result.usernameSelectors.push(`.${input.className.split(' ')[0]}`);
-    });
-
-    // Chercher les champs password
-    const passwordInputs = document.querySelectorAll('input[type="password"]');
-    passwordInputs.forEach(input => {
-      if (input.id) result.passwordSelectors.push(`#${input.id}`);
-      if (input.name) result.passwordSelectors.push(`[name="${input.name}"]`);
-      if (input.className) result.passwordSelectors.push(`.${input.className.split(' ')[0]}`);
-    });
-
-    // Chercher les boutons submit
-    const submitButtons = document.querySelectorAll('button[type="submit"], input[type="submit"], button:not([type])');
-    submitButtons.forEach(btn => {
-      if (btn.id) result.submitSelectors.push(`#${btn.id}`);
-      if (btn.className) result.submitSelectors.push(`.${btn.className.split(' ')[0]}`);
-      result.submitSelectors.push('button[type="submit"]');
-    });
-
-    return result;
-  });
-
-  console.log('Sélecteurs détectés:', JSON.stringify(selectors, null, 2));
-  return selectors;
+// Helper pour les captures d'écran sécurisées
+const safeScreenshot = async (page, path) => {
+  try {
+    await wait(1000);
+    const dimensions = await page.evaluate(() => ({
+      width: document.documentElement.scrollWidth,
+      height: document.documentElement.scrollHeight
+    }));
+    
+    if (dimensions.width > 0 && dimensions.height > 0) {
+      await page.screenshot({ path, fullPage: true });
+      return true;
+    }
+    return false;
+  } catch (error) {
+    return false;
+  }
 };
 
 /**
- * Fonction de connexion via SSO corrigée
+ * Fonction de récupération des données Pronote
+ * @param {Page} page - Page Puppeteer
+ * @param {string} pronoteUrl - URL Pronote
+ * @param {Object} enfant - Objet enfant {id, nom, selecteur}
  */
-const loginWithSSO = async (page) => {
+const scrapePronoteData = async (page, pronoteUrl, enfant = null) => {
   try {
-    console.log('Ouverture de la page SSO EduConnect...');
-    await page.goto(SSO_URL, { 
-      waitUntil: 'networkidle2',
-      timeout: 60000 
-    });
-    console.log('Page SSO chargée');
-
-    await wait(2000);
-    await page.screenshot({ path: 'screenshot_initial.png', fullPage: true });
-    console.log('📸 Capture initiale prise');
-
-    // --- CORRECTION : SÉLECTION DU PROFIL ---
-    console.log('Vérification de l\'écran de sélection de profil...');
-    const profilEleveSelector = '#bouton_eleve';
+    const enfantInfo = enfant ? ` pour ${enfant.nom}` : '';
+    console.log(`🔍 Extraction des données Pronote${enfantInfo}...\n`);
     
-    const needsProfileSelection = await page.$(profilEleveSelector);
-    if (needsProfileSelection) {
-      console.log('Écran de sélection détecté. Clic sur "Élève"...');
-      // On clique et on attend que le champ username apparaisse au lieu d'attendre la navigation entière
-      await page.click(profilEleveSelector);
-      await page.waitForSelector('#username', { visible: true, timeout: 20000 });
-      console.log('✓ Formulaire de connexion affiché après sélection de profil');
-      await wait(1000);
-    }
-
-    // --- ANALYSE DE LA PAGE (votre logique originale) ---
-    console.log('🔍 Analyse de la page pour détecter les champs de formulaire...');
-    const formInfo = await page.evaluate(() => {
-      const result = { inputs: [], buttons: [], forms: [] };
-      document.querySelectorAll('input').forEach((input, index) => {
-        result.inputs.push({
-          index, type: input.type, name: input.name, id: input.id, 
-          placeholder: input.placeholder, className: input.className, autocomplete: input.autocomplete
-        });
-      });
-      document.querySelectorAll('button, input[type="submit"]').forEach((btn, index) => {
-        result.buttons.push({
-          index, type: btn.type, id: btn.id, className: btn.className, text: btn.innerText || btn.value
-        });
-      });
-      document.querySelectorAll('form').forEach((form, index) => {
-        result.forms.push({ index, id: form.id, action: form.action, method: form.method });
-      });
-      return result;
-    });
-
-    console.log('📋 Formulaires détectés:', JSON.stringify(formInfo, null, 2));
-
-    // Détermination des sélecteurs (votre logique originale)
-    let usernameSelector = null;
-    const possibleUsernameInputs = formInfo.inputs.filter(input => 
-      input.type === 'text' || input.type === 'email' ||
-      (input.name && input.name.toLowerCase().includes('user')) ||
-      (input.id && input.id.toLowerCase().includes('user')) ||
-      (input.placeholder && input.placeholder.toLowerCase().includes('identif'))
-    );
-
-    if (possibleUsernameInputs.length > 0) {
-      const firstInput = possibleUsernameInputs[0];
-      usernameSelector = firstInput.id ? `#${firstInput.id}` : `input[name="${firstInput.name}"]`;
-      console.log(`✓ Sélecteur username choisi: ${usernameSelector}`);
-    } else {
-      usernameSelector = '#username'; // Fallback
-    }
-
-    let passwordSelector = null;
-    const possiblePasswordInputs = formInfo.inputs.filter(input => input.type === 'password');
-    if (possiblePasswordInputs.length > 0) {
-      passwordSelector = possiblePasswordInputs[0].id ? `#${possiblePasswordInputs[0].id}` : '#password';
-      console.log(`✓ Sélecteur password choisi: ${passwordSelector}`);
-    } else {
-      throw new Error('Aucun champ password trouvé');
-    }
-
-    // Saisie des identifiants
-    console.log('Attente du champ identifiant...');
-    await page.waitForSelector(usernameSelector, { visible: true, timeout: 10000 });
-    console.log('Saisie de l\'identifiant...');
-    await page.type(usernameSelector, USERNAME, { delay: 100 });
-
-    console.log('Saisie du mot de passe...');
-    await page.type(passwordSelector, PASSWORD, { delay: 100 });
-
-    await wait(1000);
-    await page.screenshot({ path: 'screenshot_after_typing.png', fullPage: true });
-
-    // Recherche et clic sur le bouton de soumission
-    let submitSelector = '#bouton_valider'; // Standard EduConnect
-    
-    console.log('Clic sur le bouton de connexion...');
-    await Promise.all([
-      page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 30000 }).catch(() => {}),
-      page.click(submitSelector).catch(async () => {
-        console.log('⚠️ Tentative de soumission via formulaire...');
-        await page.evaluate(() => document.querySelector('form')?.submit());
-      })
-    ]);
-    
-    console.log('✓ Formulaire soumis');
+    // La page est déjà chargée, on attend juste que tout soit prêt
     await wait(3000);
-    await page.screenshot({ path: 'screenshot_after_login.png', fullPage: true });
+    await safeScreenshot(page, 'screenshot_pronote_data.png');
 
-    // Vérification finale
-    const errorMessage = await page.evaluate(() => {
-      const errorElement = document.querySelector('.error, .alert-danger, .fr-error-text');
-      return errorElement ? errorElement.innerText : null;
+    // === SCRAPING DU CAHIER DE TEXTES (DEVOIRS) ===
+    console.log('📚 Extraction des devoirs (Cahier de textes)...');
+    console.log('⏳ Navigation dans chaque devoir pour extraire les détails complets...\n');
+    
+    const devoirs = await page.evaluate(async () => {
+      const devoirsData = [];
+      
+      // Helper pour attendre
+      const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+      
+      // Trouver tous les conteneurs de devoirs avec matière
+      const matiereElements = document.querySelectorAll('.conteneur-item .titre-matiere, .conteneur-item strong, .conteneur-liste-CDT .conteneur-item');
+      
+      console.log(`Trouvé ${matiereElements.length} éléments de devoirs`);
+      
+      for (let i = 0; i < matiereElements.length; i++) {
+        const element = matiereElements[i];
+        
+        try {
+          // Récupérer le conteneur parent
+          const conteneur = element.closest('.conteneur-item') || element;
+          
+          // Extraire les infos de base visibles
+          const texteVisible = conteneur.innerText || '';
+          
+          // Chercher le lien "Voir le cours" ou élément cliquable
+          const lienDetails = conteneur.querySelector('.btnCours, a[href*="cours"], button');
+          
+          const devoir = {
+            date: '',
+            matiere: '',
+            contenu: '',
+            fait: false,
+            donneLe: '',
+            joursRestants: '',
+            piecesJointes: [],
+            lienCours: false,
+            texteComplet: texteVisible.trim(),
+            timestamp: new Date().toISOString()
+          };
+          
+          // Extraire la matière du texte visible
+          const lines = texteVisible.split('\n').filter(l => l.trim());
+          const matiereMatch = lines.find(line => 
+            /^[A-ZÀ-Ü\s\-&]+$/.test(line) && 
+            line.length > 2 && 
+            line.length < 50 &&
+            !line.includes('Fait') &&
+            !line.includes('Non Fait') &&
+            !line.includes('Pour')
+          );
+          
+          if (matiereMatch) {
+            devoir.matiere = matiereMatch.trim();
+          }
+          
+          // Détecter le statut Fait/Non Fait
+          if (texteVisible.includes('Fait') || conteneur.classList.contains('est-fait')) {
+            devoir.fait = true;
+          }
+          if (texteVisible.includes('Non Fait')) {
+            devoir.fait = false;
+          }
+          
+          // Extraire le contenu (enlever matière et statut)
+          devoir.contenu = lines.filter(line => 
+            line !== devoir.matiere &&
+            !line.includes('Fait') &&
+            !line.includes('Non Fait') &&
+            !line.includes('Donné le') &&
+            !line.includes('Pour ') &&
+            !line.match(/\[\d+\s*Jours?\]/i) &&
+            line.length > 3
+          ).join(' ').trim();
+          
+          // Chercher les pièces jointes
+          const pjElements = conteneur.querySelectorAll('.piece-jointe, .chips-pj, [class*="fichier"]');
+          pjElements.forEach(pj => {
+            const pjText = pj.innerText?.trim() || pj.getAttribute('title') || '';
+            if (pjText && !devoir.piecesJointes.includes(pjText)) {
+              devoir.piecesJointes.push(pjText);
+            }
+          });
+          
+          // Chercher le lien "Voir le cours"
+          if (lienDetails) {
+            devoir.lienCours = true;
+          }
+          
+          // Ajouter le devoir si on a au moins une matière ou du contenu
+          if (devoir.matiere || devoir.contenu) {
+            devoirsData.push(devoir);
+          }
+          
+        } catch (err) {
+          console.error('Erreur extraction devoir:', err);
+        }
+      }
+      
+      return devoirsData;
+    });
+    
+    console.log(`✓ ${devoirs.length} devoirs extraits (extraction de base)`);
+    
+    // === NAVIGATION AVANCÉE POUR EXTRAIRE LES DÉTAILS COMPLETS ===
+    console.log('\n🔍 Extraction des détails complets par navigation...');
+    
+    try {
+      // Essayer de trouver les dates affichées
+      const datesDisponibles = await page.evaluate(() => {
+        const dates = [];
+        
+        // Chercher les éléments de date dans le format "Pour lundi 05 janvier"
+        const dateElements = document.querySelectorAll('[id^="Pour"], h3, .liste-date, [class*="date"]');
+        
+        dateElements.forEach(el => {
+          const text = el.innerText?.trim();
+          if (text && text.match(/Pour\s+/i)) {
+            dates.push({
+              texte: text,
+              id: el.id
+            });
+          }
+        });
+        
+        return dates;
+      });
+      
+      console.log(`Dates trouvées: ${datesDisponibles.map(d => d.texte).join(', ')}`);
+      
+      // Pour chaque date, extraire les détails des devoirs
+      for (const dateInfo of datesDisponibles) {
+        console.log(`\n  📅 Traitement de: ${dateInfo.texte}`);
+        
+        // Extraire les devoirs de cette date avec leurs détails
+        const devoirsDeDate = await page.evaluate((dateTexte) => {
+          const devoirsAvecDetails = [];
+          
+          // Trouver l'élément de date
+          const dateElement = Array.from(document.querySelectorAll('[id^="Pour"], h3, .liste-date')).find(el => 
+            el.innerText?.includes(dateTexte.replace('Pour ', ''))
+          );
+          
+          if (!dateElement) return devoirsAvecDetails;
+          
+          // Parcourir les éléments après cette date jusqu'à la prochaine date
+          let currentElement = dateElement.nextElementSibling;
+          
+          while (currentElement && !currentElement.id?.startsWith('Pour')) {
+            // Chercher les conteneurs de devoirs
+            const devoirContainers = currentElement.classList.contains('conteneur-item') 
+              ? [currentElement]
+              : Array.from(currentElement.querySelectorAll('.conteneur-item'));
+            
+            devoirContainers.forEach(container => {
+              const text = container.innerText || '';
+              const lines = text.split('\n').filter(l => l.trim());
+              
+              if (lines.length > 0) {
+                const devoir = {
+                  date: dateTexte.replace('Pour ', ''),
+                  matiere: '',
+                  contenu: '',
+                  fait: false,
+                  donneLe: '',
+                  joursRestants: '',
+                  piecesJointes: [],
+                  lienCours: false,
+                  texteComplet: text.trim()
+                };
+                
+                // Extraire "Donné le"
+                const donneLe = text.match(/Donné le\s+([^\n\[]+)/i);
+                if (donneLe) {
+                  devoir.donneLe = donneLe[1].trim();
+                }
+                
+                // Extraire les jours restants
+                const joursMatch = text.match(/\[(\d+)\s*Jours?\]/i);
+                if (joursMatch) {
+                  devoir.joursRestants = joursMatch[1];
+                }
+                
+                // Extraire la matière
+                const matiereMatch = lines.find(line => 
+                  /^[A-ZÀ-Ü\s\-&]+$/.test(line) && 
+                  line.length > 2 && 
+                  line.length < 50 &&
+                  !line.includes('Fait')
+                );
+                if (matiereMatch) {
+                  devoir.matiere = matiereMatch.trim();
+                }
+                
+                // Statut
+                if (text.includes('Fait') && !text.includes('Non Fait')) {
+                  devoir.fait = true;
+                }
+                
+                // Contenu
+                devoir.contenu = lines.filter(line => 
+                  line !== devoir.matiere &&
+                  !line.includes('Fait') &&
+                  !line.includes('Donné le') &&
+                  !line.match(/\[\d+\s*Jours?\]/i) &&
+                  line.length > 3
+                ).join(' ').trim();
+                
+                // Pièces jointes
+                const pjElements = container.querySelectorAll('.piece-jointe, .chips-pj');
+                pjElements.forEach(pj => {
+                  const pjText = pj.innerText?.trim();
+                  if (pjText && !devoir.piecesJointes.includes(pjText)) {
+                    devoir.piecesJointes.push(pjText);
+                  }
+                });
+                
+                // Lien cours
+                if (container.querySelector('.btnCours')) {
+                  devoir.lienCours = true;
+                }
+                
+                if (devoir.matiere || devoir.contenu) {
+                  devoirsAvecDetails.push(devoir);
+                }
+              }
+            });
+            
+            currentElement = currentElement.nextElementSibling;
+          }
+          
+          return devoirsAvecDetails;
+        }, dateInfo.texte);
+        
+        console.log(`    ✓ ${devoirsDeDate.length} devoir(s) extrait(s) pour cette date`);
+        
+        // Fusionner avec les devoirs existants ou ajouter
+        devoirsDeDate.forEach(nouveauDevoir => {
+          // Chercher si on a déjà ce devoir (par matière)
+          const existant = devoirs.find(d => 
+            d.matiere === nouveauDevoir.matiere && 
+            d.texteComplet === nouveauDevoir.texteComplet
+          );
+          
+          if (existant) {
+            // Mettre à jour avec les nouvelles infos
+            Object.assign(existant, nouveauDevoir);
+          } else {
+            // Ajouter le nouveau devoir
+            nouveauDevoir.timestamp = new Date().toISOString();
+            devoirs.push(nouveauDevoir);
+          }
+        });
+      }
+      
+      console.log(`\n✓ ${devoirs.length} devoirs au total après extraction complète`);
+      
+    } catch (error) {
+      console.log(`⚠️ Impossible d'extraire les détails avancés: ${error.message}`);
+      console.log('Les devoirs de base ont été conservés.');
+    }
+
+    // === SCRAPING DE L'EMPLOI DU TEMPS ===
+    console.log('\n📅 Extraction de l\'emploi du temps...');
+    
+    // Pour l'emploi du temps, il faudrait cliquer sur l'onglet approprié
+    // Pour l'instant, on cherche les éléments visibles
+    const emploiDuTemps = await page.evaluate(() => {
+      const edtData = [];
+      
+      // Chercher les éléments de calendrier ou planning
+      const edtElements = document.querySelectorAll('[class*="cours"], [class*="planning"], [id*="Planning"]');
+      
+      edtElements.forEach((element) => {
+        const text = element.innerText?.trim();
+        if (text && text.length > 5) {
+          edtData.push({
+            contenu: text,
+            timestamp: new Date().toISOString()
+          });
+        }
+      });
+      
+      return edtData;
     });
 
-    if (errorMessage) throw new Error(`Erreur de connexion: ${errorMessage}`);
+    console.log(`✓ ${emploiDuTemps.length} éléments d\'emploi du temps extraits`);
 
-    console.log('✅ Connexion SSO réussie');
+    // === SCRAPING DES NOTES ===
+    console.log('\n📊 Extraction des notes...');
+    
+    const notes = await page.evaluate(() => {
+      const notesData = [];
+      
+      // Chercher les éléments de notes
+      const noteElements = document.querySelectorAll('[class*="note"], [class*="eval"], [class*="moyenne"]');
+      
+      noteElements.forEach((element) => {
+        const text = element.innerText?.trim();
+        if (text && text.length > 2 && !text.includes('Note')) {
+          notesData.push({
+            contenu: text,
+            timestamp: new Date().toISOString()
+          });
+        }
+      });
+      
+      return notesData;
+    });
+
+    console.log(`✓ ${notes.length} notes extraites`);
+
+    // === EXTRACTION DES MENUS DISPONIBLES ===
+    console.log('\n🔍 Analyse des onglets disponibles...');
+    
+    const ongletsDisponibles = await page.evaluate(() => {
+      const onglets = [];
+      
+      // Chercher tous les onglets/menus
+      const menuElements = document.querySelectorAll('.item-menu_niveau0, .item-menu_niveau1, [class*="menu"]');
+      
+      menuElements.forEach((element) => {
+        const text = element.innerText?.trim();
+        if (text && text.length > 0 && text.length < 50) {
+          onglets.push({
+            texte: text,
+            classe: element.className,
+            id: element.id,
+            cliquable: element.tagName === 'A' || element.onclick !== null
+          });
+        }
+      });
+      
+      return onglets;
+    });
+
+    console.log(`✓ ${ongletsDisponibles.length} onglets/menus détectés`);
+    console.log('Onglets disponibles:', ongletsDisponibles.map(o => o.texte).join(', '));
+
+    // Préparer les données complètes
+    const scrapedData = {
+      devoirs,
+      emploiDuTemps,
+      notes,
+      ongletsDisponibles,
+      scrapedAt: new Date().toISOString(),
+      stats: {
+        totalDevoirs: devoirs.length,
+        totalEDT: emploiDuTemps.length,
+        totalNotes: notes.length
+      }
+    };
+
+    // Sauvegarder dans Firestore
+    await saveToFirestore(scrapedData, enfant);
+
+    return scrapedData;
 
   } catch (error) {
-    console.error('❌ Erreur lors de la connexion SSO:', error.message);
-    await page.screenshot({ path: 'screenshot_error.png', fullPage: true });
+    console.error('❌ Erreur lors du scraping Pronote:', error.message);
     throw error;
   }
 };
 
 /**
- * Fonction de récupération de l'emploi du temps (votre logique originale)
+ * Fonction de nettoyage des snapshots du mois précédent
+ * Garde uniquement les snapshots du mois en cours
  */
-const scrapeTimetable = async (page) => {
+const cleanOldSnapshots = async () => {
   try {
-    console.log('Navigation vers la page Pronote...');
-    await page.goto(PRONOTE_URL, { waitUntil: 'networkidle0', timeout: 60000 });
-    console.log('Page Pronote chargée');
+    console.log('\n🧹 Nettoyage des snapshots du mois précédent...');
+    
+    const now = new Date();
+    const currentMonth = now.getMonth();
+    const currentYear = now.getFullYear();
+    
+    // Date du début du mois en cours
+    const startOfCurrentMonth = new Date(currentYear, currentMonth, 1);
+    
+    console.log(`📅 Mois en cours: ${startOfCurrentMonth.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })}`);
+    console.log(`🗑️  Suppression des snapshots avant le: ${startOfCurrentMonth.toLocaleDateString('fr-FR')}`);
+    
+    const oldSnapshotsQuery = db.collection('pronote_snapshots')
+      .where('lastUpdate', '<', startOfCurrentMonth);
+    
+    const oldSnapshots = await oldSnapshotsQuery.get();
+    
+    if (oldSnapshots.empty) {
+      console.log('✓ Aucun snapshot du mois précédent à nettoyer');
+      return;
+    }
+    
+    const batch = db.batch();
+    let deleteCount = 0;
+    
+    oldSnapshots.forEach((doc) => {
+      batch.delete(doc.ref);
+      deleteCount++;
+    });
+    
+    await batch.commit();
+    console.log(`✓ ${deleteCount} snapshot(s) du mois précédent supprimé(s)`);
+    
+  } catch (error) {
+    console.error('⚠️ Erreur lors du nettoyage des snapshots:', error.message);
+    // Ne pas bloquer si le nettoyage échoue
+  }
+};
 
-    await wait(5000); // Laisser Pronote charger ses widgets
+/**
+ * Fonction de sauvegarde dans Firestore
+ * ÉCRASE les données existantes à chaque exécution
+ * @param {Object} data - Données à sauvegarder
+ * @param {Object} enfant - Objet enfant {id, nom, selecteur}
+ */
+const saveToFirestore = async (data, enfant = null) => {
+  try {
+    const enfantInfo = enfant ? ` pour ${enfant.nom}` : '';
+    console.log(`\n💾 Envoi des données vers Firestore${enfantInfo}...`);
+    console.log('⚠️  Mode: ÉCRASEMENT des données existantes\n');
+    
+    const timestamp = admin.firestore.FieldValue.serverTimestamp();
 
-    const timetable = await page.evaluate(() => {
-      // Sélecteurs génériques Pronote (à adapter si nécessaire)
-      const timetableElements = document.querySelectorAll('.EmplacementCours, .timetable-class');
-      const timetableData = [];
+    // Construire les références Firestore
+    let devoirsRef, edtRef, notesRef;
+    
+    if (enfant && enfant.id) {
+      // Sauvegarder dans children/{childId}/pronote/{document}
+      console.log(`📂 Chemin de sauvegarde: children/${enfant.id}/pronote/`);
       
-      timetableElements.forEach((el) => {
-        const text = el.innerText.trim().replace(/\s\s+/g, ' ');
-        if (text) {
-          timetableData.push({ info: text, time: new Date().toISOString() });
-        }
-      });
-      return timetableData;
-    });
+      devoirsRef = db.collection('children')
+        .doc(enfant.id)
+        .collection('pronote')
+        .doc('devoirs');
+      
+      edtRef = db.collection('children')
+        .doc(enfant.id)
+        .collection('pronote')
+        .doc('emploi_du_temps');
+      
+      notesRef = db.collection('children')
+        .doc(enfant.id)
+        .collection('pronote')
+        .doc('notes');
+    } else {
+      // Fallback: sauvegarder dans pronote/ (sans enfant)
+      console.log(`📂 Chemin de sauvegarde: pronote/`);
+      
+      devoirsRef = db.collection('pronote').doc('devoirs');
+      edtRef = db.collection('pronote').doc('emploi_du_temps');
+      notesRef = db.collection('pronote').doc('notes');
+    }
 
-    return timetable;
+    // ÉCRASER les devoirs
+    if (data.devoirs && data.devoirs.length > 0) {
+      await devoirsRef.set({
+        devoirs: data.devoirs,
+        count: data.devoirs.length,
+        childId: enfant?.id,
+        childName: enfant?.nom,
+        lastUpdate: timestamp,
+      }, { merge: false });
+      console.log(`✓ ${data.devoirs.length} devoirs sauvegardés${enfantInfo}`);
+    } else {
+      await devoirsRef.delete().catch(() => {});
+      console.log(`⚠️  Aucun devoir trouvé${enfantInfo}`);
+    }
+
+    // ÉCRASER l'emploi du temps
+    if (data.emploiDuTemps && data.emploiDuTemps.length > 0) {
+      await edtRef.set({
+        emploiDuTemps: data.emploiDuTemps,
+        count: data.emploiDuTemps.length,
+        childId: enfant?.id,
+        childName: enfant?.nom,
+        lastUpdate: timestamp,
+      }, { merge: false });
+      console.log(`✓ ${data.emploiDuTemps.length} éléments d'emploi du temps sauvegardés${enfantInfo}`);
+    } else {
+      await edtRef.delete().catch(() => {});
+      console.log(`⚠️  Aucun élément d'emploi du temps${enfantInfo}`);
+    }
+
+    // ÉCRASER les notes
+    if (data.notes && data.notes.length > 0) {
+      await notesRef.set({
+        notes: data.notes,
+        count: data.notes.length,
+        childId: enfant?.id,
+        childName: enfant?.nom,
+        lastUpdate: timestamp,
+      }, { merge: false });
+      console.log(`✓ ${data.notes.length} notes sauvegardées${enfantInfo}`);
+    } else {
+      await notesRef.delete().catch(() => {});
+      console.log(`⚠️  Aucune note${enfantInfo}`);
+    }
+
+    // Sauvegarder un snapshot complet pour l'historique
+    const snapshotRef = db.collection('pronote_snapshots').doc();
+    await snapshotRef.set({
+      ...data,
+      childId: enfant?.id,
+      childName: enfant?.nom,
+      lastUpdate: timestamp,
+    });
+    console.log(`✓ Snapshot complet sauvegardé${enfantInfo}`);
+
+    console.log('\n✅ Toutes les données ont été envoyées à Firestore avec succès');
+    console.log('📊 Statistiques:');
+    console.log(`   - Devoirs: ${data.stats.totalDevoirs}`);
+    console.log(`   - Emploi du temps: ${data.stats.totalEDT}`);
+    console.log(`   - Notes: ${data.stats.totalNotes}`);
+
+    // Nettoyer les anciens snapshots
+    await cleanOldSnapshots();
+
   } catch (error) {
-    console.error('Erreur lors du scraping:', error.message);
-    return [];
+    console.error('❌ Erreur lors de la sauvegarde Firestore:', error.message);
+    throw error;
   }
 };
 
-/**
- * Fonction Firestore
- */
-const saveToFirestore = async (data) => {
-  try {
-    console.log('Envoi des données vers Firestore...');
-    const docRef = db.collection('timetable').doc('current_schedule');
-    await docRef.set({
-      timetable: data,
-      timestamp: admin.firestore.FieldValue.serverTimestamp(),
-    });
-    console.log('Données envoyées à Firestore avec succès');
-  } catch (error) {
-    console.error('Erreur Firestore:', error.message);
-  }
-};
-
-/**
- * Exécution principale
- */
-const run = async () => {
-  let browser = null;
-  try {
-    console.log('=== DÉMARRAGE DU SCRIPT ===');
-    browser = await puppeteer.launch({ 
-      headless: "new", 
-      args: ['--no-sandbox', '--disable-setuid-sandbox'] 
-    });
-
-    const page = await browser.newPage();
-    await page.setViewport({ width: 1280, height: 900 });
-
-    await loginWithSSO(page);
-    const data = await scrapeTimetable(page);
-    await saveToFirestore(data);
-
-    console.log('\n=== SCRIPT TERMINÉ AVEC SUCCÈS ===');
-  } catch (error) {
-    console.error('\n❌ ERREUR FATALE:', error.message);
-    process.exit(1);
-  } finally {
-    if (browser) await browser.close();
-  }
-};
-
-run();
+module.exports = { scrapePronoteData, saveToFirestore };

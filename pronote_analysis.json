@@ -1,0 +1,3627 @@
+{
+  "allClasses": [
+    "AvecMain",
+    "AvecMenuContextuel",
+    "AvecSelectionTexte",
+    "BloquerInterface",
+    "Espace",
+    "EspaceDroit",
+    "EspaceGauche",
+    "EspaceIndex",
+    "FondBlanc",
+    "Gras",
+    "GroupeRadioButton",
+    "Image_Logo_PronoteBarreHaut",
+    "InlineBlock",
+    "Masquer_Screen",
+    "NePasImprimer",
+    "NoWrap",
+    "ObjetBandeauEspace",
+    "ObjetBandeauPied",
+    "ObjetCelluleDate",
+    "ObjetGalerieCarrousel",
+    "ObjetSaisie",
+    "ObjetSaisie_cont",
+    "ObjetWrapperAideContextuelle_Espace",
+    "ObjetWrapperCentraleNotifications_Espace",
+    "PetitEspace",
+    "SansMain",
+    "SansSelectionTexte",
+    "Texte12",
+    "ThemePronote",
+    "Tooltip-arrow-d70990ec",
+    "Tooltip-hide-fd829d55",
+    "Tooltip-label-140d7a93",
+    "Tooltip-tooltip-3cab4dc0",
+    "accessibilite",
+    "as-chips",
+    "as-date-picker",
+    "as-input",
+    "as-link",
+    "as-select",
+    "as-title",
+    "avec-event",
+    "avec-sousmenu",
+    "avecSousMenuVisible",
+    "bcne_compteur_aide",
+    "blocage-patience",
+    "bt-home",
+    "btn-bandeau",
+    "btnAutour",
+    "btnCours",
+    "btnImage",
+    "btnImageDisable",
+    "btnImageIcon",
+    "c_4",
+    "certif-27001",
+    "chips-pj",
+    "clear",
+    "color-theme",
+    "colorFoncee",
+    "confidentialite",
+    "container-bloc",
+    "conteneur-CDT",
+    "conteneur-descriptif",
+    "conteneur-droite",
+    "conteneur-item",
+    "conteneur-liste-CDT",
+    "conteneur-liste-filtre",
+    "conteneur-ressourcePeda",
+    "conteneurDiapos",
+    "cookies-disclaimer",
+    "deroulant-conteneur-show-hide",
+    "description",
+    "diapo",
+    "disable-dark-mode",
+    "element-bandeau-wrapper",
+    "ellipsis-multilignes",
+    "entete-element",
+    "est-fait",
+    "evitement",
+    "fil-ariane",
+    "fix-bloc",
+    "flex-center",
+    "flex-contain",
+    "fluid-bloc",
+    "focusVisibleContrasted",
+    "footer-toggler",
+    "footer-wrapper",
+    "full-size",
+    "full-width",
+    "has-submenu",
+    "help-text",
+    "home",
+    "host-france-container",
+    "host-text",
+    "i-small",
+    "ibe_actif",
+    "ibe_centre",
+    "ibe_droite",
+    "ibe_etab",
+    "ibe_etab_cont",
+    "ibe_etab_util",
+    "ibe_gauche",
+    "ibe_iconebtn",
+    "ibe_image_etab",
+    "ibe_logo",
+    "ibe_logo_image",
+    "ibe_util",
+    "ibe_util_texte",
+    "ibp-bloc-left",
+    "ibp-command",
+    "ibp-pill",
+    "icon_angle_down",
+    "icon_angle_left",
+    "icon_angle_right",
+    "icon_base_connaissance",
+    "icon_check_fin",
+    "icon_disquette_pleine",
+    "icon_ecole",
+    "icon_envoyer",
+    "icon_fichier_word",
+    "icon_fleche_num_bas",
+    "icon_home",
+    "icon_light_bulb",
+    "icon_off",
+    "icon_print",
+    "icon_qr_code",
+    "icon_reorder",
+    "icon_time",
+    "icon_uniF1C1",
+    "icon_uniF2C3",
+    "icon_utilisateur",
+    "iconic",
+    "ie-chips",
+    "ie-combo",
+    "ie-ellipsis",
+    "ie-imgviewer",
+    "ie-imgviewer-container",
+    "ie-ripple",
+    "ie-ripple-allowpass",
+    "ie-ripple-claire",
+    "ie-sous-titre",
+    "ie-titre-gros",
+    "ieBouton",
+    "ieBoutonDefautSansImage",
+    "iecb",
+    "iecbrbgauche",
+    "image_centrale_notification",
+    "input-wrapper",
+    "interface_affV",
+    "interface_affV_client",
+    "is-checked",
+    "is-collapse",
+    "is-member-accueil",
+    "item-menu_niveau0",
+    "item-menu_niveau1",
+    "item-menu_niveau2",
+    "item-selected",
+    "justifyLeft",
+    "kb-conteneur",
+    "knowledge-container",
+    "label-home",
+    "label-membre",
+    "label-menu-container",
+    "label-menu_niveau0",
+    "label-submenu",
+    "legal-notice",
+    "ligne-separation",
+    "liste-date",
+    "liste-element",
+    "logo-index-inverse",
+    "m-left-l",
+    "m-top-xl",
+    "main-header",
+    "membre-photo",
+    "membre-photo_container",
+    "menu-commandes",
+    "menu-container",
+    "menu-principal_niveau0",
+    "menu-principal_niveau1",
+    "menu-principal_niveau2",
+    "menuitem-niveau",
+    "modeDiapo",
+    "navbar-toggler",
+    "nb3",
+    "no-tactile",
+    "nonSelectionne",
+    "objetBandeauEntete_boutons",
+    "objetBandeauEntete_boutons_ifc",
+    "objetBandeauEntete_fullsize",
+    "objetBandeauEntete_membres",
+    "objetBandeauEntete_menu",
+    "objetBandeauEntete_secondmenu",
+    "objetBandeauEntete_sep_boutons",
+    "objetBandeauEntete_thirdmenu",
+    "objetbandeauentete_global",
+    "ocb-libelle",
+    "ocb_bouton",
+    "ocb_cont",
+    "off",
+    "on",
+    "onglets-wrapper",
+    "opened",
+    "over-scroll",
+    "p-left",
+    "parent",
+    "pere",
+    "piece-jointe",
+    "site-map",
+    "small-bt",
+    "souligne",
+    "sr-only",
+    "submenu-active",
+    "submenu-wrapper",
+    "tag-style",
+    "text",
+    "themeBoutonNeutre",
+    "tiny-view",
+    "titre-matiere",
+    "titre-onglet",
+    "vignette",
+    "with-footer",
+    "with-members",
+    "zone-fenetre",
+    "zoneContenu",
+    "zoneImage",
+    "zoneNavigation",
+    "zoneVisu"
+  ],
+  "allIds": [
+    "01122025",
+    "03122025",
+    "04122025",
+    "05012026",
+    "08122025",
+    "09012026",
+    "09122025",
+    "10122025",
+    "11122025",
+    "12022026",
+    "12122025",
+    "15122025",
+    "16122025",
+    "17122025",
+    "18122025",
+    "19122025",
+    "GInterface.Instances[0]",
+    "GInterface.Instances[0].Instances[0]",
+    "GInterface.Instances[0].Instances[1]",
+    "GInterface.Instances[0].Instances[1]_Combo0",
+    "GInterface.Instances[0].Instances[1]_Combo1",
+    "GInterface.Instances[0].Instances[1]_Combo2",
+    "GInterface.Instances[0].Instances[1]_Combo3",
+    "GInterface.Instances[0].Instances[1]_Combo4",
+    "GInterface.Instances[0].Instances[1]_Combo5",
+    "GInterface.Instances[0].Instances[1]_Combo6",
+    "GInterface.Instances[0].Instances[1]_Combo7",
+    "GInterface.Instances[0].Instances[1]_Combo8",
+    "GInterface.Instances[0].Instances[1]_Liste_niveau0",
+    "GInterface.Instances[0].Instances[1]_Liste_niveau1",
+    "GInterface.Instances[0].Instances[1]_Liste_niveau2",
+    "GInterface.Instances[0].Instances[1]_Liste_niveau3",
+    "GInterface.Instances[0].Instances[1]_Liste_niveau4",
+    "GInterface.Instances[0].Instances[1]_Liste_niveau5",
+    "GInterface.Instances[0].Instances[1]_Liste_niveau6",
+    "GInterface.Instances[0].Instances[1]_Liste_niveau7",
+    "GInterface.Instances[0].Instances[1]_Liste_niveau8",
+    "GInterface.Instances[0].Instances[1]_Wrapper",
+    "GInterface.Instances[0].Instances[2]",
+    "GInterface.Instances[0].Instances[2]_Combo0",
+    "GInterface.Instances[0].Instances[2]_Liste_niveau0",
+    "GInterface.Instances[0].Instances[2]_Wrapper",
+    "GInterface.Instances[0].Instances[3]",
+    "GInterface.Instances[0].Instances[3]_Combo0",
+    "GInterface.Instances[0].Instances[3]_Liste_niveau0",
+    "GInterface.Instances[0].Instances[3]_Wrapper",
+    "GInterface.Instances[0].Instances[4]",
+    "GInterface.Instances[0].Instances[5]",
+    "GInterface.Instances[0].Instances[6]",
+    "GInterface.Instances[0]_WrapperSecondMenu",
+    "GInterface.Instances[0]_btncommunication",
+    "GInterface.Instances[0]_secondMenu",
+    "GInterface.Instances[1]",
+    "GInterface.Instances[1]_footer",
+    "GInterface.Instances[2]",
+    "GInterface.Instances[2].Instances[0]",
+    "GInterface.Instances[2].Instances[1]",
+    "GInterface.Instances[2].Instances[2]",
+    "GInterface.Instances[2].Instances[2].cellule",
+    "GInterface.Instances[2].Instances[2].cellule_Edit",
+    "GInterface.Instances[2].Instances[2]_labelwai",
+    "GInterface.Instances[2].Instances[2]_labelwai_c",
+    "GInterface.Instances[2].Instances[3]",
+    "GInterface.Instances[2].Instances[4]",
+    "GInterface.Instances[2].Instances[4].cellule",
+    "GInterface.Instances[2].Instances[4].cellule_Edit",
+    "GInterface_T",
+    "IE.Identite.collection.g18",
+    "IE.Identite.collection.g18.bouton",
+    "IE.Identite.collection.g18.bouton_Edit",
+    "IE.Identite.collection.g18_Liste",
+    "IE.Identite.collection.g18_wrapperbouton",
+    "IE.Identite.collection.g21",
+    "IE.Identite.collection.g21_1",
+    "IE.Identite.collection.g22._instances[0]",
+    "breadcrumbBandeau",
+    "cb-g1-gen-for",
+    "cb-g2-gen-for",
+    "div",
+    "id_10",
+    "id_11",
+    "id_12_bloquer",
+    "id_137_bandzone_0",
+    "id_137_bandzone_2",
+    "id_137_bandzone_4",
+    "id_137_bandzone_5",
+    "id_138",
+    "id_138_0",
+    "id_138_1",
+    "id_139",
+    "id_140",
+    "id_141",
+    "id_142",
+    "id_143",
+    "id_144",
+    "id_145",
+    "id_146",
+    "id_147",
+    "id_16",
+    "id_226",
+    "id_227",
+    "id_228",
+    "id_229",
+    "id_230",
+    "id_231",
+    "id_232",
+    "id_233",
+    "id_234",
+    "id_235",
+    "id_236",
+    "id_237",
+    "id_238",
+    "id_239",
+    "id_240",
+    "id_241",
+    "id_242",
+    "id_243",
+    "id_244",
+    "id_245",
+    "id_246",
+    "id_247",
+    "id_248",
+    "id_249",
+    "id_250",
+    "id_251",
+    "id_252",
+    "id_253",
+    "id_254",
+    "id_255",
+    "id_256",
+    "id_257",
+    "id_258",
+    "id_259",
+    "id_260",
+    "id_261",
+    "id_262",
+    "id_263",
+    "id_264",
+    "id_265",
+    "id_266",
+    "id_267",
+    "id_268",
+    "id_269",
+    "id_270",
+    "id_271",
+    "id_272",
+    "id_273",
+    "id_274",
+    "id_275",
+    "id_276",
+    "id_278",
+    "id_279",
+    "id_283",
+    "id_39_zoneImpression",
+    "id_body",
+    "id_tooltip_1",
+    "id_tooltip_18",
+    "id_tooltip_19",
+    "id_tooltip_2",
+    "id_tooltip_3",
+    "id_tooltip_4",
+    "id_tooltip_5",
+    "id_tooltip_6",
+    "ligne_bandeau",
+    "zone_fenetre"
+  ],
+  "potentialTimetable": [
+    {
+      "tag": "DIV",
+      "class": "NePasImprimer ThemePronote",
+      "id": "div",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "NePasImprimer ThemePronote",
+      "id": "div",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "NePasImprimer ThemePronote",
+      "id": "div",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "interface_affV with-footer over-scroll",
+      "id": "GInterface_T",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "interface_affV with-footer over-scroll",
+      "id": "GInterface_T",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "interface_affV with-footer over-scroll",
+      "id": "GInterface_T",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "AvecMenuContextuel main-header",
+      "id": "GInterface.Instances[0]",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "AvecMenuContextuel main-header",
+      "id": "GInterface.Instances[0]",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "objetbandeauentete_global",
+      "id": "",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "objetbandeauentete_global",
+      "id": "",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "objetBandeauEntete_menu",
+      "id": "",
+      "textPreview": "BELVAL Kélia (6A)\nBELVAL Kélia (6A)\nBELVAL Maëlie (6A)\nAccueil\nInformations\npersonnelles\nCompte\nComp"
+    },
+    {
+      "tag": "DIV",
+      "class": "objetBandeauEntete_menu",
+      "id": "",
+      "textPreview": "BELVAL Kélia (6A)\nBELVAL Kélia (6A)\nBELVAL Maëlie (6A)\nAccueil\nInformations\npersonnelles\nCompte\nComp"
+    },
+    {
+      "tag": "DIV",
+      "class": "menu-container with-members parent",
+      "id": "",
+      "textPreview": "BELVAL Kélia (6A)\nBELVAL Kélia (6A)\nBELVAL Maëlie (6A)\nAccueil\nInformations\npersonnelles\nCompte\nComp"
+    },
+    {
+      "tag": "DIV",
+      "class": "menu-container with-members parent",
+      "id": "",
+      "textPreview": "BELVAL Kélia (6A)\nBELVAL Kélia (6A)\nBELVAL Maëlie (6A)\nAccueil\nInformations\npersonnelles\nCompte\nComp"
+    },
+    {
+      "tag": "DIV",
+      "class": "onglets-wrapper",
+      "id": "GInterface.Instances[0].Instances[1]",
+      "textPreview": "Informations\npersonnelles\nCompte\nCompte enfant\nDocuments\nCahier\nde textes\nContenu et ressources\nTrav"
+    },
+    {
+      "tag": "DIV",
+      "class": "onglets-wrapper",
+      "id": "GInterface.Instances[0].Instances[1]",
+      "textPreview": "Informations\npersonnelles\nCompte\nCompte enfant\nDocuments\nCahier\nde textes\nContenu et ressources\nTrav"
+    },
+    {
+      "tag": "UL",
+      "class": "menu-principal_niveau0",
+      "id": "GInterface.Instances[0].Instances[1]_Wrapper",
+      "textPreview": "Informations\npersonnelles\nCompte\nCompte enfant\nDocuments\nCahier\nde textes\nContenu et ressources\nTrav"
+    },
+    {
+      "tag": "UL",
+      "class": "menu-principal_niveau0",
+      "id": "GInterface.Instances[0].Instances[1]_Wrapper",
+      "textPreview": "Informations\npersonnelles\nCompte\nCompte enfant\nDocuments\nCahier\nde textes\nContenu et ressources\nTrav"
+    },
+    {
+      "tag": "DIV",
+      "class": "submenu-wrapper",
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau5",
+      "textPreview": "Emploi du temps\nCarnet\nDossiers\nEquipe pédagogique\nRemplacements"
+    },
+    {
+      "tag": "UL",
+      "class": "menu-principal_niveau1",
+      "id": "",
+      "textPreview": "Emploi du temps\nCarnet\nDossiers\nEquipe pédagogique\nRemplacements"
+    },
+    {
+      "tag": "DIV",
+      "class": "label-menu-container",
+      "id": "",
+      "textPreview": "Emploi du temps"
+    },
+    {
+      "tag": "DIV",
+      "class": "label-submenu",
+      "id": "",
+      "textPreview": "Emploi du temps"
+    },
+    {
+      "tag": "DIV",
+      "class": "submenu-wrapper",
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau7",
+      "textPreview": "Desiderata et disponibilités\nPlanning"
+    },
+    {
+      "tag": "UL",
+      "class": "menu-principal_niveau1",
+      "id": "",
+      "textPreview": "Desiderata et disponibilités\nPlanning"
+    },
+    {
+      "tag": "DIV",
+      "class": "label-menu-container",
+      "id": "",
+      "textPreview": "Planning"
+    },
+    {
+      "tag": "DIV",
+      "class": "label-submenu",
+      "id": "",
+      "textPreview": "Planning"
+    },
+    {
+      "tag": "DIV",
+      "class": "interface_affV_client no-tactile over-scroll",
+      "id": "GInterface.Instances[2]",
+      "textPreview": " \nPour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-CDT full-size",
+      "id": "",
+      "textPreview": " \nPour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le"
+    },
+    {
+      "tag": "DIV",
+      "class": "fluid-bloc conteneur-droite p-left conteneur-liste-CDT",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "DIV",
+      "class": "fluid-bloc",
+      "id": "GInterface.Instances[2].Instances[3]",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "DIV",
+      "class": "AvecSelectionTexte",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-date",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le verbe (séance 8).\nVoir l"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le verbe (séance 8).\nVoir l"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Evaluation sur le sujet et le verbe (séance 8).\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le ven. 28 nov. [3 Jours]\nFait\nDemander aux parents si la professeur de français comm"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Demander aux parents si la professeur de français commande le prochain livre étudié à la librairie d"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le ven. 28 nov. [3 Jours]\nFait\nEcrire le 5ème paragraphe du conte.\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Ecrire le 5ème paragraphe du conte.\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le ven. 28 nov. [3 Jours]\nFait\nFinir de corriger le contrôle de conjugaison n°1 (au s"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Finir de corriger le contrôle de conjugaison n°1 (au stylo vert et au fluo).\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le ven. 28 nov. [3 Jours]\nFait\nFinir de lire la fiche méthodologique \"Lire un texte à"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Finir de lire la fiche méthodologique \"Lire un texte à voix haute\" p. 9 et 10.\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le ven. 28 nov. [3 Jours]\nFait\nChoisir un début de conte parmi Le Petit chaperon roug"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Choisir un début de conte parmi Le Petit chaperon rouge, Le Petit Poucet et La Barbe bleue et s'entr"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le ven. 28 nov. [3 Jours]\nFait\nPorter le livre de Contes de Perrault pour l'exercice "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Porter le livre de Contes de Perrault pour l'exercice de lecture à voix haute.\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "MATHEMATIQUES\nDonné le ven. 28 nov. [3 Jours]\nFait\nApprendre la leçon + ex n° 24 p 70\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Apprendre la leçon + ex n° 24 p 70\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "ARTS PLASTIQUES\nDonné le ven. 28 nov. [5 Jours]\nFait\nApportez matériel de peinture, colle à bois et "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item",
+      "id": "",
+      "textPreview": "ARTS PLASTIQUES\nDonné le ven. 28 nov. [5 Jours]\nFait\nApportez matériel de peinture, colle à bois et "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Apportez matériel de peinture, colle à bois et un tablier ou un vieux t-shirt pour ne pas se salir.\n"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "HISTOIRE-GEOGRAPHIE\nDonné le mer. 26 nov. [7 Jours]\nFait\nmodification de date par rapport à ce qui e"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "modification de date par rapport à ce qui est écrit dans l'agenda : apprendre la leçon, apporter le "
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "MATHEMATIQUES\nDonné le lun. 01 déc. [2 Jours]\nNon Fait\nApprendre la leçon + ex n° 27 p 70.\nVoir le c"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Apprendre la leçon + ex n° 27 p 70.\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le ven. 28 nov. [6 Jours]\nFait\nPeaufiner le conte et le réécrire au propre sur une no"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le ven. 28 nov. [6 Jours]\nFait\nPeaufiner le conte et le réécrire au propre sur une no"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Peaufiner le conte et le réécrire au propre sur une nouvelle feuille.\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le lun. 01 déc. [3 Jours]\nFait\nSe faire évaluer en \"smileys\" par un adulte dans la pr"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Se faire évaluer en \"smileys\" par un adulte dans la première colonne de la fiche \"Entraînement à la "
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le lun. 01 déc. [3 Jours]\nFait\nLire la fiche \"Entraînement à la lecture à voix haute\""
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Lire la fiche \"Entraînement à la lecture à voix haute\".\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le lun. 01 déc. [3 Jours]\nFait\nS'entraîner à lire le début d'un conte (Le Petit Chape"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "S'entraîner à lire le début d'un conte (Le Petit Chaperon rouge, La Barbe bleue ou Le Petit Poucet) "
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "MATHEMATIQUES\nDonné le mer. 03 déc. [1 Jours]\nFait\nApprendre la leçon + ex n° 15 p 70 + n° 33 p 71\nV"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Apprendre la leçon + ex n° 15 p 70 + n° 33 p 71\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le lun. 01 déc. [7 Jours]\nFait\nS'entraîner à lire le conte inventé à voix haute.\nVoir"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le lun. 01 déc. [7 Jours]\nFait\nS'entraîner à lire le conte inventé à voix haute.\nVoir"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "S'entraîner à lire le conte inventé à voix haute.\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le ven. 05 déc. [3 Jours]\nFait\nRecopier la correction de la séance 11 (voir contenu d"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Recopier la correction de la séance 11 (voir contenu du cours du 5 décembre 2025).\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "description tiny-view est-fait",
+      "id": "id_243",
+      "textPreview": "Recopier la correction de la séance 11 (voir contenu du cours du 5 décembre 2025)."
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "id": "",
+      "textPreview": "Recopier la correction de la séance 11 (voir contenu du cours du 5 décembre 2025)."
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "HISTOIRE-GEOGRAPHIE\nDonné le ven. 05 déc. [3 Jours]\nFait\napprendre la leçon, apporter le livre\nVoir "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "apprendre la leçon, apporter le livre\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "MATHEMATIQUES\nDonné le jeu. 04 déc. [4 Jours]\nNon Fait\nInterrogation 20 minutes ( techniques multipl"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Interrogation 20 minutes ( techniques multiplication nombres décimaux)\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "SCIENCES VIE & TERRE\nDonné le lun. 01 déc. [7 Jours]\nNon Fait\nrépondre à la question 1 commencée en "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "répondre à la question 1 commencée en classe ouvrir le document pour avoir les couleurs nécessaires "
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "MATHEMATIQUES\nDonné le lun. 08 déc. [1 Jours]\nFait\nTerminer le n° 65 p 73 + apporter le matériel de "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item",
+      "id": "",
+      "textPreview": "MATHEMATIQUES\nDonné le lun. 08 déc. [1 Jours]\nFait\nTerminer le n° 65 p 73 + apporter le matériel de "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Terminer le n° 65 p 73 + apporter le matériel de géométrie.\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "ARTS PLASTIQUES\nDonné le jeu. 04 déc. [6 Jours]\nFait\nApportez matériel de peinture, colle à bois et "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item",
+      "id": "",
+      "textPreview": "ARTS PLASTIQUES\nDonné le jeu. 04 déc. [6 Jours]\nFait\nApportez matériel de peinture, colle à bois et "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Apportez matériel de peinture, colle à bois et un tablier ou un vieux t-shirt pour ne pas se salir.\n"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "HISTOIRE-GEOGRAPHIE\nDonné le lun. 08 déc. [2 Jours]\nFait\napprendre la leçon, apporter le livre\nVoir "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "apprendre la leçon, apporter le livre\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "ANGLAIS LV1\nDonné le lun. 08 déc. [3 Jours]\nFait\nApprendre vocabulaire de noël\nVoir le cours\nMATHEMA"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item",
+      "id": "",
+      "textPreview": "ANGLAIS LV1\nDonné le lun. 08 déc. [3 Jours]\nFait\nApprendre vocabulaire de noël\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Apprendre vocabulaire de noël\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "MATHEMATIQUES\nDonné le mer. 10 déc. [1 Jours]\nFait\nApprendre la leçon + n° 18 et 19 p 170\nVoir le co"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Apprendre la leçon + n° 18 et 19 p 170\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "SCIENCES VIE & TERRE\nDonné le lun. 08 déc. [3 Jours]\nFait\napprendre les 2 leçons sur la notion d'esp"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "apprendre les 2 leçons sur la notion d'espèce\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "HISTOIRE-GEOGRAPHIE\nDonné le mer. 10 déc. [2 Jours]\nFait\napprendre la leçon, apporter le livre\nVoir "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item",
+      "id": "",
+      "textPreview": "HISTOIRE-GEOGRAPHIE\nDonné le mer. 10 déc. [2 Jours]\nFait\napprendre la leçon, apporter le livre\nVoir "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "apprendre la leçon, apporter le livre\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "ANGLAIS LV1\nDonné le ven. 12 déc. [3 Jours]\nFait\nApprendre les pronoms personnels - certains élèves "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item",
+      "id": "",
+      "textPreview": "ANGLAIS LV1\nDonné le ven. 12 déc. [3 Jours]\nFait\nApprendre les pronoms personnels - certains élèves "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Apprendre les pronoms personnels - certains élèves seront interrogés à l'oral.\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "HISTOIRE-GEOGRAPHIE\nDonné le ven. 12 déc. [3 Jours]\nFait\napprendre la leçon, apporter le livre\nVoir "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "apprendre la leçon, apporter le livre\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "MATHEMATIQUES\nDonné le jeu. 11 déc. [4 Jours]\nFait\nApprendre la leçon + n° 25 et 26 p 170.\nVoir le c"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Apprendre la leçon + n° 25 et 26 p 170.\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "MATHEMATIQUES\nDonné le mer. 10 déc. [6 Jours]\nFait\nCONTROLE N° 4 ( Opérations sur les décimaux, angl"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item",
+      "id": "",
+      "textPreview": "MATHEMATIQUES\nDonné le mer. 10 déc. [6 Jours]\nFait\nCONTROLE N° 4 ( Opérations sur les décimaux, angl"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "CONTROLE N° 4 ( Opérations sur les décimaux, angles, cercle circonscrit)\n6emeC4.docx\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "MATHEMATIQUES\nDonné le lun. 15 déc. [1 Jours]\nFait\npenser à prendre le matériel de géométrie et à pr"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "penser à prendre le matériel de géométrie et à préparer la copie double.\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "ARTS PLASTIQUES\nDonné le mer. 10 déc. [7 Jours]\nFait\nApportez matériel de peinture, colle à bois et "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item",
+      "id": "",
+      "textPreview": "ARTS PLASTIQUES\nDonné le mer. 10 déc. [7 Jours]\nFait\nApportez matériel de peinture, colle à bois et "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Apportez matériel de peinture, colle à bois et un tablier ou un vieux t-shirt pour ne pas se salir.\n"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "HISTOIRE-GEOGRAPHIE\nDonné le lun. 15 déc. [2 Jours]\nFait\napprendre la leçon, apporter le livre\nVoir "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "apprendre la leçon, apporter le livre\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "ANGLAIS LV1\nDonné le mar. 16 déc. [2 Jours]\nFait\nExercices n°6B - 6C du Workbook (p17)\n+ finir exerc"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item",
+      "id": "",
+      "textPreview": "ANGLAIS LV1\nDonné le mar. 16 déc. [2 Jours]\nFait\nExercices n°6B - 6C du Workbook (p17)\n+ finir exerc"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Exercices n°6B - 6C du Workbook (p17)\n+ finir exercice 3 de la page distribuée ce jour.\n\nRevoir conj"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le ven. 12 déc. [6 Jours]\nFait\nAvoir le livre L'Odyssée d'Homère.\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Avoir le livre L'Odyssée d'Homère.\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "MATHEMATIQUES\nDonné le mer. 17 déc. [1 Jours]\nFait\nPas de devoir !!!! prendre son rapporteur .\nVoir "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Pas de devoir !!!! prendre son rapporteur .\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "HISTOIRE-GEOGRAPHIE\nDonné le mer. 10 déc. [9 Jours]\nFait\ncontrôle de géographie sur le chap. 2 : app"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item",
+      "id": "",
+      "textPreview": "HISTOIRE-GEOGRAPHIE\nDonné le mer. 10 déc. [9 Jours]\nFait\ncontrôle de géographie sur le chap. 2 : app"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "contrôle de géographie sur le chap. 2 : apprendre le cours, les définitions, revoir les docs.\nVoir l"
+    },
+    {
+      "tag": "DIV",
+      "class": "description tiny-view est-fait",
+      "id": "id_266",
+      "textPreview": "contrôle de géographie sur le chap. 2 : apprendre le cours, les définitions, revoir les docs."
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "id": "",
+      "textPreview": "contrôle de géographie sur le chap. 2 : apprendre le cours, les définitions, revoir les docs."
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "HISTOIRE-GEOGRAPHIE\nDonné le mer. 17 déc. [2 Jours]\nFait\napporter seulement le cahier\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "apporter seulement le cahier\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "ANGLAIS LV1\nDonné le ven. 19 déc. [17 Jours]\nFait\n- Rest well (reposez-vous bien)\n- Enjoy the holida"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le lun. 15 déc. [21 Jours]\nFait\nLire les leçons et faire toutes les activités corresp"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Lire les leçons et faire toutes les activités correspondantes dans le livret de langue p. 4 à 14.\nVo"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le ven. 19 déc. [17 Jours]\nFait\nPorter le livre L'Odyssée d'Homère.\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Porter le livre L'Odyssée d'Homère.\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "HISTOIRE-GEOGRAPHIE\nDonné le mer. 17 déc. [19 Jours]\nFait\napporter le livre, relire la leçon\nVoir le"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "apporter le livre, relire la leçon\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "MATHEMATIQUES\nDonné le jeu. 18 déc. [18 Jours]\nFait\nBonnes vacances à tous ! Passez un bon Noel et s"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Bonnes vacances à tous ! Passez un bon Noel et soyez raisonnables sur le chocolat et les bonbons ..."
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "SCIENCES VIE & TERRE\nDonné le lun. 15 déc. [21 Jours]\nFait\nfinir le dessin d'une cellule en suivant "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "finir le dessin d'une cellule en suivant les consignes données et en ouvrant la photo de mue de trti"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le lun. 06 oct. [95 Jours]\nNon Fait\nEvaluation sur les mots invariables.\nVoir le cour"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le lun. 06 oct. [95 Jours]\nNon Fait\nEvaluation sur les mots invariables.\nVoir le cour"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Evaluation sur les mots invariables.\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le ven. 28 nov. [76 Jours]\nNon Fait\nContrôle de conjugaison n°2 sur l'imparfait, le p"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le ven. 28 nov. [76 Jours]\nNon Fait\nContrôle de conjugaison n°2 sur l'imparfait, le p"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Contrôle de conjugaison n°2 sur l'imparfait, le passé simple, le présent et le futur de l'indicatif."
+    },
+    {
+      "tag": "DIV",
+      "class": "btnCours",
+      "id": "",
+      "textPreview": "Voir le cours"
+    }
+  ],
+  "potentialHomework": [
+    {
+      "tag": "DIV",
+      "class": "BloquerInterface NePasImprimer SansSelectionTexte blocage-patience",
+      "id": "id_12_bloquer",
+      "textPreview": ""
+    },
+    {
+      "tag": "DIV",
+      "class": "NePasImprimer ThemePronote",
+      "id": "div",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "NePasImprimer ThemePronote",
+      "id": "div",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "NePasImprimer ThemePronote",
+      "id": "div",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "NePasImprimer ThemePronote",
+      "id": "div",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "NePasImprimer ThemePronote",
+      "id": "div",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "interface_affV with-footer over-scroll",
+      "id": "GInterface_T",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "interface_affV with-footer over-scroll",
+      "id": "GInterface_T",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "interface_affV with-footer over-scroll",
+      "id": "GInterface_T",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "interface_affV with-footer over-scroll",
+      "id": "GInterface_T",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "interface_affV with-footer over-scroll",
+      "id": "GInterface_T",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "AvecMenuContextuel main-header",
+      "id": "GInterface.Instances[0]",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "AvecMenuContextuel main-header",
+      "id": "GInterface.Instances[0]",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "AvecMenuContextuel main-header",
+      "id": "GInterface.Instances[0]",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "AvecMenuContextuel main-header",
+      "id": "GInterface.Instances[0]",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "objetbandeauentete_global",
+      "id": "",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "objetbandeauentete_global",
+      "id": "",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "objetbandeauentete_global",
+      "id": "",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "objetbandeauentete_global",
+      "id": "",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "ibe_util_texte ibe_actif",
+      "id": "",
+      "textPreview": "Espace Parents - Mme BELVAL Nathalie"
+    },
+    {
+      "tag": "DIV",
+      "class": "objetBandeauEntete_menu",
+      "id": "",
+      "textPreview": "BELVAL Kélia (6A)\nBELVAL Kélia (6A)\nBELVAL Maëlie (6A)\nAccueil\nInformations\npersonnelles\nCompte\nComp"
+    },
+    {
+      "tag": "DIV",
+      "class": "objetBandeauEntete_menu",
+      "id": "",
+      "textPreview": "BELVAL Kélia (6A)\nBELVAL Kélia (6A)\nBELVAL Maëlie (6A)\nAccueil\nInformations\npersonnelles\nCompte\nComp"
+    },
+    {
+      "tag": "DIV",
+      "class": "objetBandeauEntete_menu",
+      "id": "",
+      "textPreview": "BELVAL Kélia (6A)\nBELVAL Kélia (6A)\nBELVAL Maëlie (6A)\nAccueil\nInformations\npersonnelles\nCompte\nComp"
+    },
+    {
+      "tag": "DIV",
+      "class": "objetBandeauEntete_menu",
+      "id": "",
+      "textPreview": "BELVAL Kélia (6A)\nBELVAL Kélia (6A)\nBELVAL Maëlie (6A)\nAccueil\nInformations\npersonnelles\nCompte\nComp"
+    },
+    {
+      "tag": "DIV",
+      "class": "menu-container with-members parent",
+      "id": "",
+      "textPreview": "BELVAL Kélia (6A)\nBELVAL Kélia (6A)\nBELVAL Maëlie (6A)\nAccueil\nInformations\npersonnelles\nCompte\nComp"
+    },
+    {
+      "tag": "DIV",
+      "class": "menu-container with-members parent",
+      "id": "",
+      "textPreview": "BELVAL Kélia (6A)\nBELVAL Kélia (6A)\nBELVAL Maëlie (6A)\nAccueil\nInformations\npersonnelles\nCompte\nComp"
+    },
+    {
+      "tag": "DIV",
+      "class": "menu-container with-members parent",
+      "id": "",
+      "textPreview": "BELVAL Kélia (6A)\nBELVAL Kélia (6A)\nBELVAL Maëlie (6A)\nAccueil\nInformations\npersonnelles\nCompte\nComp"
+    },
+    {
+      "tag": "DIV",
+      "class": "menu-container with-members parent",
+      "id": "",
+      "textPreview": "BELVAL Kélia (6A)\nBELVAL Kélia (6A)\nBELVAL Maëlie (6A)\nAccueil\nInformations\npersonnelles\nCompte\nComp"
+    },
+    {
+      "tag": "DIV",
+      "class": "onglets-wrapper",
+      "id": "GInterface.Instances[0].Instances[1]",
+      "textPreview": "Informations\npersonnelles\nCompte\nCompte enfant\nDocuments\nCahier\nde textes\nContenu et ressources\nTrav"
+    },
+    {
+      "tag": "DIV",
+      "class": "onglets-wrapper",
+      "id": "GInterface.Instances[0].Instances[1]",
+      "textPreview": "Informations\npersonnelles\nCompte\nCompte enfant\nDocuments\nCahier\nde textes\nContenu et ressources\nTrav"
+    },
+    {
+      "tag": "DIV",
+      "class": "onglets-wrapper",
+      "id": "GInterface.Instances[0].Instances[1]",
+      "textPreview": "Informations\npersonnelles\nCompte\nCompte enfant\nDocuments\nCahier\nde textes\nContenu et ressources\nTrav"
+    },
+    {
+      "tag": "DIV",
+      "class": "onglets-wrapper",
+      "id": "GInterface.Instances[0].Instances[1]",
+      "textPreview": "Informations\npersonnelles\nCompte\nCompte enfant\nDocuments\nCahier\nde textes\nContenu et ressources\nTrav"
+    },
+    {
+      "tag": "UL",
+      "class": "menu-principal_niveau0",
+      "id": "GInterface.Instances[0].Instances[1]_Wrapper",
+      "textPreview": "Informations\npersonnelles\nCompte\nCompte enfant\nDocuments\nCahier\nde textes\nContenu et ressources\nTrav"
+    },
+    {
+      "tag": "UL",
+      "class": "menu-principal_niveau0",
+      "id": "GInterface.Instances[0].Instances[1]_Wrapper",
+      "textPreview": "Informations\npersonnelles\nCompte\nCompte enfant\nDocuments\nCahier\nde textes\nContenu et ressources\nTrav"
+    },
+    {
+      "tag": "UL",
+      "class": "menu-principal_niveau0",
+      "id": "GInterface.Instances[0].Instances[1]_Wrapper",
+      "textPreview": "Informations\npersonnelles\nCompte\nCompte enfant\nDocuments\nCahier\nde textes\nContenu et ressources\nTrav"
+    },
+    {
+      "tag": "UL",
+      "class": "menu-principal_niveau0",
+      "id": "GInterface.Instances[0].Instances[1]_Wrapper",
+      "textPreview": "Informations\npersonnelles\nCompte\nCompte enfant\nDocuments\nCahier\nde textes\nContenu et ressources\nTrav"
+    },
+    {
+      "tag": "LI",
+      "class": "item-menu_niveau0 SansMain is-collapse avec-sousmenu item-selected",
+      "id": "",
+      "textPreview": "Cahier\nde textes\nContenu et ressources\nTravail à faire\nForums pédagogiques"
+    },
+    {
+      "tag": "LI",
+      "class": "item-menu_niveau0 SansMain is-collapse avec-sousmenu item-selected",
+      "id": "",
+      "textPreview": "Cahier\nde textes\nContenu et ressources\nTravail à faire\nForums pédagogiques"
+    },
+    {
+      "tag": "LI",
+      "class": "item-menu_niveau0 SansMain is-collapse avec-sousmenu item-selected",
+      "id": "",
+      "textPreview": "Cahier\nde textes\nContenu et ressources\nTravail à faire\nForums pédagogiques"
+    },
+    {
+      "tag": "LI",
+      "class": "item-menu_niveau0 SansMain is-collapse avec-sousmenu item-selected",
+      "id": "",
+      "textPreview": "Cahier\nde textes\nContenu et ressources\nTravail à faire\nForums pédagogiques"
+    },
+    {
+      "tag": "DIV",
+      "class": "label-menu_niveau0",
+      "id": "GInterface.Instances[0].Instances[1]_Combo1",
+      "textPreview": "Cahier\nde textes"
+    },
+    {
+      "tag": "DIV",
+      "class": "label-menu_niveau0",
+      "id": "GInterface.Instances[0].Instances[1]_Combo1",
+      "textPreview": "Cahier\nde textes"
+    },
+    {
+      "tag": "DIV",
+      "class": "submenu-wrapper",
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau1",
+      "textPreview": "Contenu et ressources\nTravail à faire\nForums pédagogiques"
+    },
+    {
+      "tag": "DIV",
+      "class": "submenu-wrapper",
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau1",
+      "textPreview": "Contenu et ressources\nTravail à faire\nForums pédagogiques"
+    },
+    {
+      "tag": "UL",
+      "class": "menu-principal_niveau1",
+      "id": "",
+      "textPreview": "Contenu et ressources\nTravail à faire\nForums pédagogiques"
+    },
+    {
+      "tag": "UL",
+      "class": "menu-principal_niveau1",
+      "id": "",
+      "textPreview": "Contenu et ressources\nTravail à faire\nForums pédagogiques"
+    },
+    {
+      "tag": "LI",
+      "class": "item-menu_niveau1 menuitem-niveau",
+      "id": "",
+      "textPreview": "Travail à faire"
+    },
+    {
+      "tag": "LI",
+      "class": "item-menu_niveau1 menuitem-niveau",
+      "id": "",
+      "textPreview": "Travail à faire"
+    },
+    {
+      "tag": "DIV",
+      "class": "label-menu-container",
+      "id": "",
+      "textPreview": "Travail à faire"
+    },
+    {
+      "tag": "DIV",
+      "class": "label-menu-container",
+      "id": "",
+      "textPreview": "Travail à faire"
+    },
+    {
+      "tag": "DIV",
+      "class": "label-submenu",
+      "id": "",
+      "textPreview": "Travail à faire"
+    },
+    {
+      "tag": "DIV",
+      "class": "label-submenu",
+      "id": "",
+      "textPreview": "Travail à faire"
+    },
+    {
+      "tag": "DIV",
+      "class": "objetBandeauEntete_secondmenu",
+      "id": "GInterface.Instances[0]_secondMenu",
+      "textPreview": "Travail à faire à la maison"
+    },
+    {
+      "tag": "DIV",
+      "class": "objetBandeauEntete_secondmenu",
+      "id": "GInterface.Instances[0]_secondMenu",
+      "textPreview": "Travail à faire à la maison"
+    },
+    {
+      "tag": "DIV",
+      "class": "flex-contain flex-center",
+      "id": "",
+      "textPreview": "Travail à faire à la maison"
+    },
+    {
+      "tag": "DIV",
+      "class": "flex-contain flex-center",
+      "id": "",
+      "textPreview": "Travail à faire à la maison"
+    },
+    {
+      "tag": "DIV",
+      "class": "Texte12 Gras SansMain",
+      "id": "",
+      "textPreview": "Consultation temporaire"
+    },
+    {
+      "tag": "DIV",
+      "class": "objetBandeauEntete_thirdmenu",
+      "id": "ligne_bandeau",
+      "textPreview": "Vue chronologique\nVue hebdomadaire\ndepuis\nlun. 01 déc.\n\nDate\n\nlun. 01 déc.\n\nTous les thèmes\nA faire\n"
+    },
+    {
+      "tag": "DIV",
+      "class": "element-bandeau-wrapper",
+      "id": "id_137_bandzone_5",
+      "textPreview": "A faire\nFait"
+    },
+    {
+      "tag": "DIV",
+      "class": "interface_affV_client no-tactile over-scroll",
+      "id": "GInterface.Instances[2]",
+      "textPreview": " \nPour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le"
+    },
+    {
+      "tag": "DIV",
+      "class": "interface_affV_client no-tactile over-scroll",
+      "id": "GInterface.Instances[2]",
+      "textPreview": " \nPour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le"
+    },
+    {
+      "tag": "DIV",
+      "class": "interface_affV_client no-tactile over-scroll",
+      "id": "GInterface.Instances[2]",
+      "textPreview": " \nPour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le"
+    },
+    {
+      "tag": "DIV",
+      "class": "interface_affV_client no-tactile over-scroll",
+      "id": "GInterface.Instances[2]",
+      "textPreview": " \nPour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le"
+    },
+    {
+      "tag": "DIV",
+      "class": "interface_affV_client no-tactile over-scroll",
+      "id": "GInterface.Instances[2]",
+      "textPreview": " \nPour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-CDT full-size",
+      "id": "",
+      "textPreview": " \nPour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-CDT full-size",
+      "id": "",
+      "textPreview": " \nPour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-CDT full-size",
+      "id": "",
+      "textPreview": " \nPour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-CDT full-size",
+      "id": "",
+      "textPreview": " \nPour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-CDT full-size",
+      "id": "",
+      "textPreview": " \nPour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le"
+    },
+    {
+      "tag": "DIV",
+      "class": "fluid-bloc conteneur-droite p-left conteneur-liste-CDT",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "DIV",
+      "class": "fluid-bloc conteneur-droite p-left conteneur-liste-CDT",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "DIV",
+      "class": "fluid-bloc conteneur-droite p-left conteneur-liste-CDT",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "DIV",
+      "class": "fluid-bloc conteneur-droite p-left conteneur-liste-CDT",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "DIV",
+      "class": "fluid-bloc conteneur-droite p-left conteneur-liste-CDT",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "DIV",
+      "class": "fluid-bloc",
+      "id": "GInterface.Instances[2].Instances[3]",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "DIV",
+      "class": "fluid-bloc",
+      "id": "GInterface.Instances[2].Instances[3]",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "DIV",
+      "class": "fluid-bloc",
+      "id": "GInterface.Instances[2].Instances[3]",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "DIV",
+      "class": "fluid-bloc",
+      "id": "GInterface.Instances[2].Instances[3]",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "DIV",
+      "class": "fluid-bloc",
+      "id": "GInterface.Instances[2].Instances[3]",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "DIV",
+      "class": "AvecSelectionTexte",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "DIV",
+      "class": "AvecSelectionTexte",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "DIV",
+      "class": "AvecSelectionTexte",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "DIV",
+      "class": "AvecSelectionTexte",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "DIV",
+      "class": "AvecSelectionTexte",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-date",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-date",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-date",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-date",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-date",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "LI",
+      "class": "",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le verbe (séance 8).\nVoir l"
+    },
+    {
+      "tag": "LI",
+      "class": "",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le ven. 28 nov. [3 Jours]\nFait\nFinir de lire la fiche méthodologique \"Lire un texte à"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le ven. 28 nov. [3 Jours]\nFait\nFinir de lire la fiche méthodologique \"Lire un texte à"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Finir de lire la fiche méthodologique \"Lire un texte à voix haute\" p. 9 et 10.\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "description tiny-view est-fait",
+      "id": "id_230",
+      "textPreview": "Finir de lire la fiche méthodologique \"Lire un texte à voix haute\" p. 9 et 10."
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "id": "",
+      "textPreview": "Finir de lire la fiche méthodologique \"Lire un texte à voix haute\" p. 9 et 10."
+    },
+    {
+      "tag": "LI",
+      "class": "",
+      "id": "",
+      "textPreview": "Pour mercredi 03 décembre\nARTS PLASTIQUES\nDonné le ven. 28 nov. [5 Jours]\nFait\nApportez matériel de "
+    },
+    {
+      "tag": "LI",
+      "class": "",
+      "id": "",
+      "textPreview": "Pour mercredi 03 décembre\nARTS PLASTIQUES\nDonné le ven. 28 nov. [5 Jours]\nFait\nApportez matériel de "
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "ARTS PLASTIQUES\nDonné le ven. 28 nov. [5 Jours]\nFait\nApportez matériel de peinture, colle à bois et "
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "ARTS PLASTIQUES\nDonné le ven. 28 nov. [5 Jours]\nFait\nApportez matériel de peinture, colle à bois et "
+    },
+    {
+      "tag": "LI",
+      "class": "",
+      "id": "",
+      "textPreview": "HISTOIRE-GEOGRAPHIE\nDonné le mer. 26 nov. [7 Jours]\nFait\nmodification de date par rapport à ce qui e"
+    },
+    {
+      "tag": "LI",
+      "class": "",
+      "id": "",
+      "textPreview": "HISTOIRE-GEOGRAPHIE\nDonné le mer. 26 nov. [7 Jours]\nFait\nmodification de date par rapport à ce qui e"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "HISTOIRE-GEOGRAPHIE\nDonné le mer. 26 nov. [7 Jours]\nFait\nmodification de date par rapport à ce qui e"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "HISTOIRE-GEOGRAPHIE\nDonné le mer. 26 nov. [7 Jours]\nFait\nmodification de date par rapport à ce qui e"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "modification de date par rapport à ce qui est écrit dans l'agenda : apprendre la leçon, apporter le "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "modification de date par rapport à ce qui est écrit dans l'agenda : apprendre la leçon, apporter le "
+    },
+    {
+      "tag": "DIV",
+      "class": "description tiny-view est-fait",
+      "id": "id_235",
+      "textPreview": "modification de date par rapport à ce qui est écrit dans l'agenda : apprendre la leçon, apporter le "
+    },
+    {
+      "tag": "DIV",
+      "class": "description tiny-view est-fait",
+      "id": "id_235",
+      "textPreview": "modification de date par rapport à ce qui est écrit dans l'agenda : apprendre la leçon, apporter le "
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "id": "",
+      "textPreview": "modification de date par rapport à ce qui est écrit dans l'agenda : apprendre la leçon, apporter le "
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "id": "",
+      "textPreview": "modification de date par rapport à ce qui est écrit dans l'agenda : apprendre la leçon, apporter le "
+    },
+    {
+      "tag": "LI",
+      "class": "",
+      "id": "",
+      "textPreview": "Pour jeudi 04 décembre\nFRANCAIS\nDonné le ven. 28 nov. [6 Jours]\nFait\nPeaufiner le conte et le réécri"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le ven. 28 nov. [6 Jours]\nFait\nPeaufiner le conte et le réécrire au propre sur une no"
+    },
+    {
+      "tag": "LI",
+      "class": "",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le lun. 01 déc. [3 Jours]\nFait\nSe faire évaluer en \"smileys\" par un adulte dans la pr"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le lun. 01 déc. [3 Jours]\nFait\nSe faire évaluer en \"smileys\" par un adulte dans la pr"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Se faire évaluer en \"smileys\" par un adulte dans la première colonne de la fiche \"Entraînement à la "
+    },
+    {
+      "tag": "DIV",
+      "class": "description tiny-view est-fait",
+      "id": "id_238",
+      "textPreview": "Se faire évaluer en \"smileys\" par un adulte dans la première colonne de la fiche \"Entraînement à la "
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "id": "",
+      "textPreview": "Se faire évaluer en \"smileys\" par un adulte dans la première colonne de la fiche \"Entraînement à la "
+    },
+    {
+      "tag": "LI",
+      "class": "",
+      "id": "",
+      "textPreview": "Pour jeudi 18 décembre\nANGLAIS LV1\nDonné le mar. 16 déc. [2 Jours]\nFait\nExercices n°6B - 6C du Workb"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "ANGLAIS LV1\nDonné le mar. 16 déc. [2 Jours]\nFait\nExercices n°6B - 6C du Workbook (p17)\n+ finir exerc"
+    },
+    {
+      "tag": "LI",
+      "class": "",
+      "id": "",
+      "textPreview": "MATHEMATIQUES\nDonné le mer. 17 déc. [1 Jours]\nFait\nPas de devoir !!!! prendre son rapporteur .\nVoir "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "MATHEMATIQUES\nDonné le mer. 17 déc. [1 Jours]\nFait\nPas de devoir !!!! prendre son rapporteur .\nVoir "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Pas de devoir !!!! prendre son rapporteur .\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "description tiny-view est-fait",
+      "id": "id_265",
+      "textPreview": "Pas de devoir !!!! prendre son rapporteur ."
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "id": "",
+      "textPreview": "Pas de devoir !!!! prendre son rapporteur ."
+    },
+    {
+      "tag": "LI",
+      "class": "",
+      "id": "",
+      "textPreview": "Pour vendredi 19 décembre\nHISTOIRE-GEOGRAPHIE\nDonné le mer. 10 déc. [9 Jours]\nFait\ncontrôle de géogr"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "HISTOIRE-GEOGRAPHIE\nDonné le mer. 10 déc. [9 Jours]\nFait\ncontrôle de géographie sur le chap. 2 : app"
+    },
+    {
+      "tag": "LI",
+      "class": "",
+      "id": "",
+      "textPreview": "HISTOIRE-GEOGRAPHIE\nDonné le mer. 17 déc. [2 Jours]\nFait\napporter seulement le cahier\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "HISTOIRE-GEOGRAPHIE\nDonné le mer. 17 déc. [2 Jours]\nFait\napporter seulement le cahier\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "apporter seulement le cahier\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "description tiny-view est-fait",
+      "id": "id_267",
+      "textPreview": "apporter seulement le cahier"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "id": "",
+      "textPreview": "apporter seulement le cahier"
+    },
+    {
+      "tag": "LI",
+      "class": "",
+      "id": "",
+      "textPreview": "Pour lundi 05 janvier\nANGLAIS LV1\nDonné le ven. 19 déc. [17 Jours]\nFait\n- Rest well (reposez-vous bi"
+    },
+    {
+      "tag": "UL",
+      "class": "liste-element",
+      "id": "",
+      "textPreview": "ANGLAIS LV1\nDonné le ven. 19 déc. [17 Jours]\nFait\n- Rest well (reposez-vous bien)\n- Enjoy the holida"
+    },
+    {
+      "tag": "LI",
+      "class": "",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le lun. 15 déc. [21 Jours]\nFait\nLire les leçons et faire toutes les activités corresp"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le lun. 15 déc. [21 Jours]\nFait\nLire les leçons et faire toutes les activités corresp"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Lire les leçons et faire toutes les activités correspondantes dans le livret de langue p. 4 à 14.\nVo"
+    },
+    {
+      "tag": "DIV",
+      "class": "description tiny-view est-fait",
+      "id": "id_269",
+      "textPreview": "Lire les leçons et faire toutes les activités correspondantes dans le livret de langue p. 4 à 14."
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "id": "",
+      "textPreview": "Lire les leçons et faire toutes les activités correspondantes dans le livret de langue p. 4 à 14."
+    }
+  ],
+  "potentialGrades": [
+    {
+      "tag": "DIV",
+      "class": "NePasImprimer ThemePronote",
+      "id": "zone_fenetre",
+      "textPreview": ""
+    },
+    {
+      "tag": "DIV",
+      "class": "NePasImprimer ThemePronote",
+      "id": "div",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "NePasImprimer ThemePronote",
+      "id": "div",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "NePasImprimer ThemePronote",
+      "id": "div",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "interface_affV with-footer over-scroll",
+      "id": "GInterface_T",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "interface_affV with-footer over-scroll",
+      "id": "GInterface_T",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "interface_affV with-footer over-scroll",
+      "id": "GInterface_T",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "AvecMenuContextuel main-header",
+      "id": "GInterface.Instances[0]",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "objetbandeauentete_global",
+      "id": "",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'accessibilité\nPlan du site\nCOLLEGE LE LUBERON - CAD"
+    },
+    {
+      "tag": "DIV",
+      "class": "objetBandeauEntete_menu",
+      "id": "",
+      "textPreview": "BELVAL Kélia (6A)\nBELVAL Kélia (6A)\nBELVAL Maëlie (6A)\nAccueil\nInformations\npersonnelles\nCompte\nComp"
+    },
+    {
+      "tag": "DIV",
+      "class": "menu-container with-members parent",
+      "id": "",
+      "textPreview": "BELVAL Kélia (6A)\nBELVAL Kélia (6A)\nBELVAL Maëlie (6A)\nAccueil\nInformations\npersonnelles\nCompte\nComp"
+    },
+    {
+      "tag": "DIV",
+      "class": "onglets-wrapper",
+      "id": "GInterface.Instances[0].Instances[1]",
+      "textPreview": "Informations\npersonnelles\nCompte\nCompte enfant\nDocuments\nCahier\nde textes\nContenu et ressources\nTrav"
+    },
+    {
+      "tag": "DIV",
+      "class": "label-menu_niveau0",
+      "id": "GInterface.Instances[0].Instances[1]_Combo2",
+      "textPreview": "Notes"
+    },
+    {
+      "tag": "DIV",
+      "class": "submenu-wrapper",
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau2",
+      "textPreview": "Les notes\nRelevé\nBULLETINS\nBulletin de l'élève\nBulletin de la classe"
+    },
+    {
+      "tag": "DIV",
+      "class": "label-menu-container",
+      "id": "",
+      "textPreview": "Les notes"
+    },
+    {
+      "tag": "DIV",
+      "class": "label-submenu",
+      "id": "",
+      "textPreview": "Les notes"
+    },
+    {
+      "tag": "DIV",
+      "class": "interface_affV_client no-tactile over-scroll",
+      "id": "GInterface.Instances[2]",
+      "textPreview": " \nPour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le"
+    },
+    {
+      "tag": "DIV",
+      "class": "interface_affV_client no-tactile over-scroll",
+      "id": "GInterface.Instances[2]",
+      "textPreview": " \nPour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-CDT full-size",
+      "id": "",
+      "textPreview": " \nPour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-CDT full-size",
+      "id": "",
+      "textPreview": " \nPour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le"
+    },
+    {
+      "tag": "DIV",
+      "class": "fluid-bloc conteneur-droite p-left conteneur-liste-CDT",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "DIV",
+      "class": "fluid-bloc conteneur-droite p-left conteneur-liste-CDT",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "DIV",
+      "class": "fluid-bloc",
+      "id": "GInterface.Instances[2].Instances[3]",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "DIV",
+      "class": "fluid-bloc",
+      "id": "GInterface.Instances[2].Instances[3]",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "DIV",
+      "class": "AvecSelectionTexte",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "DIV",
+      "class": "AvecSelectionTexte",
+      "id": "",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le v"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le lun. 24 nov. [7 Jours]\nFait\nEvaluation sur le sujet et le verbe (séance 8).\nVoir l"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Evaluation sur le sujet et le verbe (séance 8).\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "description tiny-view est-fait",
+      "id": "id_226",
+      "textPreview": "Evaluation sur le sujet et le verbe (séance 8)."
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "id": "",
+      "textPreview": "Evaluation sur le sujet et le verbe (séance 8)."
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item ligne-separation",
+      "id": "",
+      "textPreview": "MATHEMATIQUES\nDonné le mer. 17 déc. [1 Jours]\nFait\nPas de devoir !!!! prendre son rapporteur .\nVoir "
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Pas de devoir !!!! prendre son rapporteur .\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "description tiny-view est-fait",
+      "id": "id_265",
+      "textPreview": "Pas de devoir !!!! prendre son rapporteur ."
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "id": "",
+      "textPreview": "Pas de devoir !!!! prendre son rapporteur ."
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-item",
+      "id": "",
+      "textPreview": "FRANCAIS\nDonné le lun. 06 oct. [95 Jours]\nNon Fait\nEvaluation sur les mots invariables.\nVoir le cour"
+    },
+    {
+      "tag": "DIV",
+      "class": "conteneur-descriptif",
+      "id": "",
+      "textPreview": "Evaluation sur les mots invariables.\nVoir le cours"
+    },
+    {
+      "tag": "DIV",
+      "class": "description tiny-view ",
+      "id": "id_275",
+      "textPreview": "Evaluation sur les mots invariables."
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "id": "",
+      "textPreview": "Evaluation sur les mots invariables."
+    },
+    {
+      "tag": "DIV",
+      "class": "footer-wrapper opened",
+      "id": "GInterface.Instances[1]",
+      "textPreview": "Seuls des cookies (ou informations stockées en local) de fonctionnement sont utilisés. Pour plus d'i"
+    },
+    {
+      "tag": "DIV",
+      "class": "knowledge-container",
+      "id": "",
+      "textPreview": "Tout savoir sur PRONOTE\n\nTutos vidéo"
+    },
+    {
+      "tag": "DIV",
+      "class": "ibp-pill icon_light_bulb",
+      "id": "",
+      "textPreview": "Tout savoir sur PRONOTE\n\nTutos vidéo"
+    },
+    {
+      "tag": "DIV",
+      "class": "kb-conteneur ellipsis-multilignes nb3",
+      "id": "",
+      "textPreview": "Tout savoir sur PRONOTE\n\nTutos vidéo"
+    }
+  ],
+  "iframes": [],
+  "divs": [
+    {
+      "id": "id_39_zoneImpression",
+      "class": "Masquer_Screen FondBlanc full-width",
+      "textPreview": "L'impression n'est pas possible ici mais vous pouv"
+    },
+    {
+      "id": "id_12_bloquer",
+      "class": "BloquerInterface NePasImprimer SansSelectionTexte blocage-patience",
+      "textPreview": ""
+    },
+    {
+      "id": "zone_fenetre",
+      "class": "NePasImprimer ThemePronote",
+      "textPreview": ""
+    },
+    {
+      "id": "id_16",
+      "class": "zone-fenetre",
+      "textPreview": ""
+    },
+    {
+      "id": "div",
+      "class": "NePasImprimer ThemePronote",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'a"
+    },
+    {
+      "id": "GInterface_T",
+      "class": "interface_affV with-footer over-scroll",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'a"
+    },
+    {
+      "id": "GInterface.Instances[0]",
+      "class": "AvecMenuContextuel main-header",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'a"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[0]",
+      "class": "",
+      "textPreview": "Accéder au menu\nAccéder au contenu\nDéclaration d'a"
+    },
+    {
+      "id": "GInterface.Instances[0]_WrapperSecondMenu",
+      "class": "",
+      "textPreview": ""
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[2]",
+      "class": "objetBandeauEntete_membres",
+      "textPreview": "BELVAL Kélia (6A)\nBELVAL Kélia (6A)\nBELVAL Maëlie "
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[2]_Combo0",
+      "class": "label-menu_niveau0",
+      "textPreview": "BELVAL Kélia (6A)"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[2]_Liste_niveau0",
+      "class": "submenu-wrapper avecSousMenuVisible",
+      "textPreview": "BELVAL Kélia (6A)\nBELVAL Maëlie (6A)"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[3]",
+      "class": "home",
+      "textPreview": "Accueil"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[3]_Combo0",
+      "class": "label-menu_niveau0",
+      "textPreview": "Accueil"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[3]_Liste_niveau0",
+      "class": "submenu-wrapper",
+      "textPreview": "Page d'accueil"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[1]",
+      "class": "onglets-wrapper",
+      "textPreview": "Informations\npersonnelles\nCompte\nCompte enfant\nDoc"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[1]_Combo0",
+      "class": "label-menu_niveau0",
+      "textPreview": "Informations\npersonnelles"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau0",
+      "class": "submenu-wrapper",
+      "textPreview": "Compte\nCompte enfant\nDocuments"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[1]_Combo1",
+      "class": "label-menu_niveau0",
+      "textPreview": "Cahier\nde textes"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau1",
+      "class": "submenu-wrapper",
+      "textPreview": "Contenu et ressources\nTravail à faire\nForums pédag"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[1]_Combo2",
+      "class": "label-menu_niveau0",
+      "textPreview": "Notes"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau2",
+      "class": "submenu-wrapper",
+      "textPreview": "Les notes\nRelevé\nBULLETINS\nBulletin de l'élève\nBul"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[1]_Combo3",
+      "class": "label-menu_niveau0",
+      "textPreview": "Compétences"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau3",
+      "class": "submenu-wrapper",
+      "textPreview": "ÉVALUATIONS\nLes évaluations\nDifficultés et points "
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[1]_Combo4",
+      "class": "label-menu_niveau0",
+      "textPreview": "Résultats"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau4",
+      "class": "submenu-wrapper",
+      "textPreview": "Livret scolaire\nPluriannuel"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[1]_Combo5",
+      "class": "label-menu_niveau0",
+      "textPreview": "Vie\nscolaire"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau5",
+      "class": "submenu-wrapper",
+      "textPreview": "Emploi du temps\nCarnet\nDossiers\nEquipe pédagogique"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[1]_Combo6",
+      "class": "label-menu_niveau0",
+      "textPreview": "Orientations"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau6",
+      "class": "submenu-wrapper",
+      "textPreview": "Fiche de dialogue"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[1]_Combo7",
+      "class": "label-menu_niveau0",
+      "textPreview": "Rencontres\nParents/Profs"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau7",
+      "class": "submenu-wrapper",
+      "textPreview": "Desiderata et disponibilités\nPlanning"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[1]_Combo8",
+      "class": "label-menu_niveau0",
+      "textPreview": "Communication"
+    },
+    {
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau8",
+      "class": "submenu-wrapper",
+      "textPreview": "Informations & sondages\nDiscussions\nAgenda\nMenu"
+    },
+    {
+      "id": "GInterface.Instances[0]_secondMenu",
+      "class": "objetBandeauEntete_secondmenu",
+      "textPreview": "Travail à faire à la maison"
+    },
+    {
+      "id": "ligne_bandeau",
+      "class": "objetBandeauEntete_thirdmenu",
+      "textPreview": "Vue chronologique\nVue hebdomadaire\ndepuis\nlun. 01 "
+    },
+    {
+      "id": "id_137_bandzone_0",
+      "class": "element-bandeau-wrapper",
+      "textPreview": "Vue chronologique\nVue hebdomadaire"
+    },
+    {
+      "id": "id_138",
+      "class": "GroupeRadioButton",
+      "textPreview": "Vue chronologique\nVue hebdomadaire"
+    },
+    {
+      "id": "GInterface.Instances[2].Instances[4]",
+      "class": "element-bandeau-wrapper",
+      "textPreview": "du 29 déc. au 02 janv."
+    },
+    {
+      "id": "GInterface.Instances[2].Instances[4].cellule",
+      "class": "",
+      "textPreview": "du 29 déc. au 02 janv."
+    },
+    {
+      "id": "GInterface.Instances[2].Instances[4].cellule_Edit",
+      "class": "ocb-libelle ie-ripple-allowpass ie-ellipsis",
+      "textPreview": "du 29 déc. au 02 janv."
+    },
+    {
+      "id": "id_137_bandzone_2",
+      "class": "element-bandeau-wrapper",
+      "textPreview": "depuis"
+    },
+    {
+      "id": "GInterface.Instances[2].Instances[2]",
+      "class": "element-bandeau-wrapper",
+      "textPreview": "lun. 01 déc.\n\nDate\n\nlun. 01 déc."
+    },
+    {
+      "id": "GInterface.Instances[2].Instances[2].cellule",
+      "class": "",
+      "textPreview": "lun. 01 déc."
+    },
+    {
+      "id": "GInterface.Instances[2].Instances[2].cellule_Edit",
+      "class": "ocb-libelle ie-ripple-allowpass ie-ellipsis",
+      "textPreview": "lun. 01 déc."
+    },
+    {
+      "id": "id_137_bandzone_4",
+      "class": "element-bandeau-wrapper",
+      "textPreview": "Tous les thèmes"
+    },
+    {
+      "id": "IE.Identite.collection.g18",
+      "class": "ObjetSaisie ie-combo",
+      "textPreview": "Tous les thèmes"
+    },
+    {
+      "id": "IE.Identite.collection.g18_wrapperbouton",
+      "class": "input-wrapper ObjetSaisie",
+      "textPreview": "Tous les thèmes"
+    },
+    {
+      "id": "",
+      "class": "ObjetSaisie_cont",
+      "textPreview": "Tous les thèmes"
+    },
+    {
+      "id": "IE.Identite.collection.g18.bouton",
+      "class": "",
+      "textPreview": "Tous les thèmes"
+    },
+    {
+      "id": "IE.Identite.collection.g18.bouton_Edit",
+      "class": "ocb-libelle ie-ripple-allowpass ie-ellipsis",
+      "textPreview": "Tous les thèmes"
+    },
+    {
+      "id": "IE.Identite.collection.g18_Liste",
+      "class": "deroulant-conteneur-show-hide",
+      "textPreview": ""
+    },
+    {
+      "id": "id_137_bandzone_5",
+      "class": "element-bandeau-wrapper",
+      "textPreview": "A faire\nFait"
+    },
+    {
+      "id": "GInterface.Instances[2]",
+      "class": "interface_affV_client no-tactile over-scroll",
+      "textPreview": " \nPour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24"
+    },
+    {
+      "id": "GInterface.Instances[2].Instances[1]",
+      "class": "fix-bloc conteneur-liste-filtre",
+      "textPreview": " "
+    },
+    {
+      "id": "GInterface.Instances[2].Instances[3]",
+      "class": "fluid-bloc",
+      "textPreview": "Pour lundi 01 décembre\nFRANCAIS\nDonné le lun. 24 n"
+    },
+    {
+      "id": "01122025",
+      "class": "",
+      "textPreview": "Pour lundi 01 décembre"
+    },
+    {
+      "id": "id_226",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Evaluation sur le sujet et le verbe (séance 8)."
+    },
+    {
+      "id": "id_227",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Demander aux parents si la professeur de français "
+    },
+    {
+      "id": "id_228",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Ecrire le 5ème paragraphe du conte."
+    },
+    {
+      "id": "id_229",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Finir de corriger le contrôle de conjugaison n°1 ("
+    },
+    {
+      "id": "id_230",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Finir de lire la fiche méthodologique \"Lire un tex"
+    },
+    {
+      "id": "id_231",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Choisir un début de conte parmi Le Petit chaperon "
+    },
+    {
+      "id": "id_232",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Porter le livre de Contes de Perrault pour l'exerc"
+    },
+    {
+      "id": "id_233",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Apprendre la leçon + ex n° 24 p 70"
+    },
+    {
+      "id": "03122025",
+      "class": "",
+      "textPreview": "Pour mercredi 03 décembre"
+    },
+    {
+      "id": "id_234",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Apportez matériel de peinture, colle à bois et un "
+    },
+    {
+      "id": "id_235",
+      "class": "description tiny-view est-fait",
+      "textPreview": "modification de date par rapport à ce qui est écri"
+    },
+    {
+      "id": "id_236",
+      "class": "description tiny-view ",
+      "textPreview": "Apprendre la leçon + ex n° 27 p 70."
+    },
+    {
+      "id": "04122025",
+      "class": "",
+      "textPreview": "Pour jeudi 04 décembre"
+    },
+    {
+      "id": "id_237",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Peaufiner le conte et le réécrire au propre sur un"
+    },
+    {
+      "id": "id_238",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Se faire évaluer en \"smileys\" par un adulte dans l"
+    },
+    {
+      "id": "id_239",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Lire la fiche \"Entraînement à la lecture à voix ha"
+    },
+    {
+      "id": "id_240",
+      "class": "description tiny-view est-fait",
+      "textPreview": "S'entraîner à lire le début d'un conte (Le Petit C"
+    },
+    {
+      "id": "id_241",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Apprendre la leçon + ex n° 15 p 70 + n° 33 p 71"
+    },
+    {
+      "id": "08122025",
+      "class": "",
+      "textPreview": "Pour lundi 08 décembre"
+    },
+    {
+      "id": "id_242",
+      "class": "description tiny-view est-fait",
+      "textPreview": "S'entraîner à lire le conte inventé à voix haute."
+    },
+    {
+      "id": "id_243",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Recopier la correction de la séance 11 (voir conte"
+    },
+    {
+      "id": "id_244",
+      "class": "description tiny-view est-fait",
+      "textPreview": "apprendre la leçon, apporter le livre"
+    },
+    {
+      "id": "id_245",
+      "class": "description tiny-view ",
+      "textPreview": "Interrogation 20 minutes ( techniques multiplicati"
+    },
+    {
+      "id": "id_246",
+      "class": "description tiny-view ",
+      "textPreview": "répondre à la question 1 commencée en classe ouvri"
+    },
+    {
+      "id": "09122025",
+      "class": "",
+      "textPreview": "Pour mardi 09 décembre"
+    },
+    {
+      "id": "id_248",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Terminer le n° 65 p 73 + apporter le matériel de g"
+    },
+    {
+      "id": "10122025",
+      "class": "",
+      "textPreview": "Pour mercredi 10 décembre"
+    },
+    {
+      "id": "id_249",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Apportez matériel de peinture, colle à bois et un "
+    },
+    {
+      "id": "id_250",
+      "class": "description tiny-view est-fait",
+      "textPreview": "apprendre la leçon, apporter le livre"
+    },
+    {
+      "id": "11122025",
+      "class": "",
+      "textPreview": "Pour jeudi 11 décembre"
+    },
+    {
+      "id": "id_251",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Apprendre vocabulaire de noël"
+    },
+    {
+      "id": "id_252",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Apprendre la leçon + n° 18 et 19 p 170"
+    },
+    {
+      "id": "id_253",
+      "class": "description tiny-view est-fait",
+      "textPreview": "apprendre les 2 leçons sur la notion d'espèce"
+    },
+    {
+      "id": "12122025",
+      "class": "",
+      "textPreview": "Pour vendredi 12 décembre"
+    },
+    {
+      "id": "id_254",
+      "class": "description tiny-view est-fait",
+      "textPreview": "apprendre la leçon, apporter le livre"
+    },
+    {
+      "id": "15122025",
+      "class": "",
+      "textPreview": "Pour lundi 15 décembre"
+    },
+    {
+      "id": "id_255",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Apprendre les pronoms personnels - certains élèves"
+    },
+    {
+      "id": "id_256",
+      "class": "description tiny-view est-fait",
+      "textPreview": "apprendre la leçon, apporter le livre"
+    },
+    {
+      "id": "id_257",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Apprendre la leçon + n° 25 et 26 p 170."
+    },
+    {
+      "id": "16122025",
+      "class": "",
+      "textPreview": "Pour mardi 16 décembre"
+    },
+    {
+      "id": "id_258",
+      "class": "description tiny-view est-fait",
+      "textPreview": "CONTROLE N° 4 ( Opérations sur les décimaux, angle"
+    },
+    {
+      "id": "id_260",
+      "class": "description tiny-view est-fait",
+      "textPreview": "penser à prendre le matériel de géométrie et à pré"
+    },
+    {
+      "id": "17122025",
+      "class": "",
+      "textPreview": "Pour mercredi 17 décembre"
+    },
+    {
+      "id": "id_261",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Apportez matériel de peinture, colle à bois et un "
+    },
+    {
+      "id": "id_262",
+      "class": "description tiny-view est-fait",
+      "textPreview": "apprendre la leçon, apporter le livre"
+    },
+    {
+      "id": "18122025",
+      "class": "",
+      "textPreview": "Pour jeudi 18 décembre"
+    },
+    {
+      "id": "id_263",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Exercices n°6B - 6C du Workbook (p17)\n+ finir exer"
+    },
+    {
+      "id": "id_264",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Avoir le livre L'Odyssée d'Homère."
+    },
+    {
+      "id": "id_265",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Pas de devoir !!!! prendre son rapporteur ."
+    },
+    {
+      "id": "19122025",
+      "class": "",
+      "textPreview": "Pour vendredi 19 décembre"
+    },
+    {
+      "id": "id_266",
+      "class": "description tiny-view est-fait",
+      "textPreview": "contrôle de géographie sur le chap. 2 : apprendre "
+    },
+    {
+      "id": "id_267",
+      "class": "description tiny-view est-fait",
+      "textPreview": "apporter seulement le cahier"
+    },
+    {
+      "id": "05012026",
+      "class": "",
+      "textPreview": "Pour lundi 05 janvier"
+    },
+    {
+      "id": "id_268",
+      "class": "description tiny-view est-fait",
+      "textPreview": "- Rest well (reposez-vous bien)\n- Enjoy the holida"
+    },
+    {
+      "id": "id_269",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Lire les leçons et faire toutes les activités corr"
+    },
+    {
+      "id": "id_270",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Porter le livre L'Odyssée d'Homère."
+    },
+    {
+      "id": "id_271",
+      "class": "description tiny-view est-fait",
+      "textPreview": "apporter le livre, relire la leçon"
+    },
+    {
+      "id": "id_272",
+      "class": "description tiny-view est-fait",
+      "textPreview": "Bonnes vacances à tous ! Passez un bon Noel et soy"
+    },
+    {
+      "id": "id_273",
+      "class": "description tiny-view est-fait",
+      "textPreview": "finir le dessin d'une cellule en suivant les consi"
+    },
+    {
+      "id": "IE.Identite.collection.g21",
+      "class": "",
+      "textPreview": ""
+    },
+    {
+      "id": "id_278",
+      "class": "conteneurDiapos ie-imgviewer-container justifyLeft",
+      "textPreview": ""
+    },
+    {
+      "id": "IE.Identite.collection.g21_1",
+      "class": "diapo on",
+      "textPreview": ""
+    },
+    {
+      "id": "IE.Identite.collection.g22._instances[0]",
+      "class": "container-bloc",
+      "textPreview": ""
+    },
+    {
+      "id": "id_283",
+      "class": "vignette  modeDiapo  nonSelectionne",
+      "textPreview": ""
+    },
+    {
+      "id": "id_279",
+      "class": "zoneNavigation off",
+      "textPreview": ""
+    },
+    {
+      "id": "09012026",
+      "class": "",
+      "textPreview": "Pour vendredi 09 janvier"
+    },
+    {
+      "id": "id_275",
+      "class": "description tiny-view ",
+      "textPreview": "Evaluation sur les mots invariables."
+    },
+    {
+      "id": "12022026",
+      "class": "",
+      "textPreview": "Pour jeudi 12 février"
+    },
+    {
+      "id": "id_276",
+      "class": "description tiny-view ",
+      "textPreview": "Contrôle de conjugaison n°2 sur l'imparfait, le pa"
+    },
+    {
+      "id": "GInterface.Instances[2].Instances[0]",
+      "class": "",
+      "textPreview": " "
+    },
+    {
+      "id": "id_147",
+      "class": "conteneur-ressourcePeda",
+      "textPreview": ""
+    },
+    {
+      "id": "id_139",
+      "class": "",
+      "textPreview": ""
+    },
+    {
+      "id": "id_146",
+      "class": "m-top-xl",
+      "textPreview": ""
+    },
+    {
+      "id": "id_140",
+      "class": "m-top-xl",
+      "textPreview": ""
+    },
+    {
+      "id": "id_141",
+      "class": "m-top-xl",
+      "textPreview": ""
+    },
+    {
+      "id": "id_142",
+      "class": "m-top-xl",
+      "textPreview": ""
+    },
+    {
+      "id": "id_143",
+      "class": "m-top-xl",
+      "textPreview": ""
+    },
+    {
+      "id": "id_144",
+      "class": "m-top-xl",
+      "textPreview": ""
+    },
+    {
+      "id": "id_145",
+      "class": "m-top-xl",
+      "textPreview": ""
+    },
+    {
+      "id": "GInterface.Instances[1]",
+      "class": "footer-wrapper opened",
+      "textPreview": "Seuls des cookies (ou informations stockées en loc"
+    },
+    {
+      "id": "id_10",
+      "class": "",
+      "textPreview": ""
+    },
+    {
+      "id": "id_tooltip_1",
+      "class": "Tooltip-tooltip-3cab4dc0 Tooltip-hide-fd829d55",
+      "textPreview": ""
+    },
+    {
+      "id": "id_tooltip_2",
+      "class": "Tooltip-tooltip-3cab4dc0 Tooltip-hide-fd829d55",
+      "textPreview": ""
+    },
+    {
+      "id": "id_tooltip_3",
+      "class": "Tooltip-tooltip-3cab4dc0 Tooltip-hide-fd829d55",
+      "textPreview": ""
+    },
+    {
+      "id": "id_tooltip_4",
+      "class": "Tooltip-tooltip-3cab4dc0 Tooltip-hide-fd829d55",
+      "textPreview": ""
+    },
+    {
+      "id": "id_tooltip_5",
+      "class": "Tooltip-tooltip-3cab4dc0 Tooltip-hide-fd829d55",
+      "textPreview": ""
+    },
+    {
+      "id": "id_tooltip_6",
+      "class": "Tooltip-tooltip-3cab4dc0 Tooltip-hide-fd829d55",
+      "textPreview": ""
+    },
+    {
+      "id": "id_11",
+      "class": "Tooltip-tooltip-3cab4dc0 Tooltip-hide-fd829d55",
+      "textPreview": ""
+    },
+    {
+      "id": "id_tooltip_18",
+      "class": "Tooltip-tooltip-3cab4dc0 Tooltip-hide-fd829d55",
+      "textPreview": ""
+    },
+    {
+      "id": "id_tooltip_19",
+      "class": "Tooltip-tooltip-3cab4dc0 Tooltip-hide-fd829d55",
+      "textPreview": ""
+    }
+  ],
+  "mainElements": [
+    {
+      "tag": "DIV",
+      "id": "GInterface_T",
+      "class": "interface_affV with-footer over-scroll",
+      "childrenCount": 3
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0]",
+      "class": "AvecMenuContextuel main-header",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[0]",
+      "class": "",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0]_WrapperSecondMenu",
+      "class": "",
+      "childrenCount": 0
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[2]",
+      "class": "objetBandeauEntete_membres",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[2]_Combo0",
+      "class": "label-menu_niveau0",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[2]_Liste_niveau0",
+      "class": "submenu-wrapper avecSousMenuVisible",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[3]",
+      "class": "home",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[3]_Combo0",
+      "class": "label-menu_niveau0",
+      "childrenCount": 2
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[3]_Liste_niveau0",
+      "class": "submenu-wrapper",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[1]",
+      "class": "onglets-wrapper",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[1]_Combo0",
+      "class": "label-menu_niveau0",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau0",
+      "class": "submenu-wrapper",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[1]_Combo1",
+      "class": "label-menu_niveau0",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau1",
+      "class": "submenu-wrapper",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[1]_Combo2",
+      "class": "label-menu_niveau0",
+      "childrenCount": 0
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau2",
+      "class": "submenu-wrapper",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[1]_Combo3",
+      "class": "label-menu_niveau0",
+      "childrenCount": 0
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau3",
+      "class": "submenu-wrapper",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[1]_Combo4",
+      "class": "label-menu_niveau0",
+      "childrenCount": 0
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau4",
+      "class": "submenu-wrapper",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[1]_Combo5",
+      "class": "label-menu_niveau0",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau5",
+      "class": "submenu-wrapper",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[1]_Combo6",
+      "class": "label-menu_niveau0",
+      "childrenCount": 0
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau6",
+      "class": "submenu-wrapper",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[1]_Combo7",
+      "class": "label-menu_niveau0",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau7",
+      "class": "submenu-wrapper",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[1]_Combo8",
+      "class": "label-menu_niveau0",
+      "childrenCount": 0
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0].Instances[1]_Liste_niveau8",
+      "class": "submenu-wrapper",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[0]_secondMenu",
+      "class": "objetBandeauEntete_secondmenu",
+      "childrenCount": 3
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[2].Instances[4]",
+      "class": "element-bandeau-wrapper",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[2].Instances[4].cellule",
+      "class": "",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[2].Instances[4].cellule_Edit",
+      "class": "ocb-libelle ie-ripple-allowpass ie-ellipsis",
+      "childrenCount": 0
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[2].Instances[2]",
+      "class": "element-bandeau-wrapper",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[2].Instances[2].cellule",
+      "class": "",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[2].Instances[2].cellule_Edit",
+      "class": "ocb-libelle ie-ripple-allowpass ie-ellipsis",
+      "childrenCount": 0
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[2]",
+      "class": "interface_affV_client no-tactile over-scroll",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[2].Instances[1]",
+      "class": "fix-bloc conteneur-liste-filtre",
+      "childrenCount": 0
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[2].Instances[3]",
+      "class": "fluid-bloc",
+      "childrenCount": 1
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[2].Instances[0]",
+      "class": "",
+      "childrenCount": 0
+    },
+    {
+      "tag": "DIV",
+      "id": "GInterface.Instances[1]",
+      "class": "footer-wrapper opened",
+      "childrenCount": 2
+    }
+  ]
+}
