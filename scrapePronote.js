@@ -40,34 +40,90 @@ const scrapePronoteData = async (page, pronoteUrl, enfant = null) => {
 
     // === SCRAPING DU CAHIER DE TEXTES (DEVOIRS) ===
     console.log('📚 Extraction des devoirs (Cahier de textes)...');
-    console.log('⏳ Navigation dans chaque devoir pour extraire les détails complets...\n');
     
-    const devoirs = await page.evaluate(async () => {
+    // D'abord, extraire la date du datepicker
+    const dateSelectionnee = await page.evaluate(() => {
+      // Chercher le datepicker avec différentes stratégies
+      const datepickers = [
+        document.querySelector('.as-date-picker input'),
+        document.querySelector('[class*="date-picker"] input'),
+        document.querySelector('input[type="date"]'),
+        document.querySelector('.ObjetSaisie input'),
+        ...Array.from(document.querySelectorAll('input'))
+          .filter(input => input.value && input.value.match(/\d{1,2}\/\d{1,2}\/\d{4}/))
+      ];
+      
+      for (const picker of datepickers) {
+        if (picker && picker.value) {
+          return picker.value;
+        }
+      }
+      
+      // Fallback: chercher dans le texte de la page
+      const pageText = document.body.innerText;
+      const dateMatch = pageText.match(/(?:depuis|le|du)?\s*(\w+\.?\s+\d{1,2}\s+\w+\.?)/i);
+      if (dateMatch) {
+        return dateMatch[1];
+      }
+      
+      return '';
+    });
+    
+    console.log(`📅 Date sélectionnée dans le datepicker: "${dateSelectionnee}"`);
+    
+    const devoirs = await page.evaluate((dateParDefaut) => {
       const devoirsData = [];
       
-      // Helper pour attendre
-      const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+      // Chercher les conteneurs de devoirs par date
+      const datesContainers = document.querySelectorAll('[id^="Pour"], .liste-date');
       
-      // Trouver tous les conteneurs de devoirs avec matière
-      const matiereElements = document.querySelectorAll('.conteneur-item .titre-matiere, .conteneur-item strong, .conteneur-liste-CDT .conteneur-item');
+      // Si pas de conteneurs de dates, chercher directement les devoirs
+      let devoirElements = [];
       
-      console.log(`Trouvé ${matiereElements.length} éléments de devoirs`);
+      if (datesContainers.length > 0) {
+        // Parcourir chaque date
+        datesContainers.forEach(dateContainer => {
+          const dateText = dateContainer.innerText?.trim() || '';
+          const dateMatch = dateText.match(/Pour\s+(.+)/i);
+          const dateDevoir = dateMatch ? dateMatch[1].trim() : dateText;
+          
+          // Chercher les devoirs après cet élément de date
+          let nextElement = dateContainer.nextElementSibling;
+          while (nextElement && !nextElement.id?.startsWith('Pour')) {
+            if (nextElement.classList.contains('conteneur-item') || 
+                nextElement.querySelector('.conteneur-item')) {
+              const items = nextElement.classList.contains('conteneur-item') 
+                ? [nextElement] 
+                : Array.from(nextElement.querySelectorAll('.conteneur-item'));
+              
+              items.forEach(item => {
+                devoirElements.push({ element: item, date: dateDevoir });
+              });
+            }
+            nextElement = nextElement.nextElementSibling;
+          }
+        });
+      } else {
+        // Fallback: chercher tous les conteneurs de devoirs
+        const allItems = document.querySelectorAll('.conteneur-item, .conteneur-CDT');
+        allItems.forEach(item => {
+          devoirElements.push({ element: item, date: dateParDefaut });
+        });
+      }
       
-      for (let i = 0; i < matiereElements.length; i++) {
-        const element = matiereElements[i];
-        
+      // Extraire les informations de chaque devoir
+      devoirElements.forEach(({ element, date }) => {
         try {
-          // Récupérer le conteneur parent
-          const conteneur = element.closest('.conteneur-item') || element;
+          const text = element.innerText || '';
+          const html = element.innerHTML || '';
           
-          // Extraire les infos de base visibles
-          const texteVisible = conteneur.innerText || '';
+          // Ignorer si trop court
+          if (text.trim().length < 5) return;
           
-          // Chercher le lien "Voir le cours" ou élément cliquable
-          const lienDetails = conteneur.querySelector('.btnCours, a[href*="cours"], button');
+          const lines = text.split('\n').filter(l => l.trim());
           
           const devoir = {
-            date: '',
+            date: date || dateParDefaut || '',
             matiere: '',
             contenu: '',
             fait: false,
@@ -75,46 +131,64 @@ const scrapePronoteData = async (page, pronoteUrl, enfant = null) => {
             joursRestants: '',
             piecesJointes: [],
             lienCours: false,
-            texteComplet: texteVisible.trim(),
+            texteComplet: text.trim(),
             timestamp: new Date().toISOString()
           };
           
-          // Extraire la matière du texte visible
-          const lines = texteVisible.split('\n').filter(l => l.trim());
+          // Détecter le statut Fait/Non Fait
+          if (text.includes('Fait') || html.includes('Fait') || element.classList.contains('est-fait')) {
+            devoir.fait = true;
+          }
+          if (text.includes('Non Fait') || html.includes('Non Fait')) {
+            devoir.fait = false;
+          }
+          
+          // Extraire la date si pas déjà définie (depuis le texte "Pour...")
+          if (!devoir.date) {
+            const dateMatch = text.match(/Pour\s+([^\n]+)/i);
+            if (dateMatch) {
+              devoir.date = dateMatch[1].trim();
+            }
+          }
+          
+          // Extraction de "Donné le"
+          const donneLe = text.match(/Donné le\s+([^\n\[]+)/i);
+          if (donneLe) {
+            devoir.donneLe = donneLe[1].trim();
+          }
+          
+          // Extraction des jours restants
+          const joursMatch = text.match(/\[(\d+)\s*Jours?\]/i);
+          if (joursMatch) {
+            devoir.joursRestants = joursMatch[1];
+          }
+          
+          // Extraction de la matière (généralement en majuscules)
           const matiereMatch = lines.find(line => 
             /^[A-ZÀ-Ü\s\-&]+$/.test(line) && 
             line.length > 2 && 
             line.length < 50 &&
-            !line.includes('Fait') &&
-            !line.includes('Non Fait') &&
-            !line.includes('Pour')
+            !line.includes('Pour') &&
+            !line.includes('Donné')
           );
-          
           if (matiereMatch) {
             devoir.matiere = matiereMatch.trim();
           }
           
-          // Détecter le statut Fait/Non Fait
-          if (texteVisible.includes('Fait') || conteneur.classList.contains('est-fait')) {
-            devoir.fait = true;
-          }
-          if (texteVisible.includes('Non Fait')) {
-            devoir.fait = false;
-          }
-          
-          // Extraire le contenu (enlever matière et statut)
-          devoir.contenu = lines.filter(line => 
-            line !== devoir.matiere &&
+          // Extraction du contenu (le texte principal du devoir)
+          const contentLines = lines.filter(line => 
+            !line.includes('Pour ') && 
+            !line.includes('Donné le') && 
             !line.includes('Fait') &&
             !line.includes('Non Fait') &&
-            !line.includes('Donné le') &&
-            !line.includes('Pour ') &&
             !line.match(/\[\d+\s*Jours?\]/i) &&
-            line.length > 3
-          ).join(' ').trim();
+            line !== devoir.matiere &&
+            line.length > 2
+          );
+          devoir.contenu = contentLines.join(' ').trim();
           
-          // Chercher les pièces jointes
-          const pjElements = conteneur.querySelectorAll('.piece-jointe, .chips-pj, [class*="fichier"]');
+          // Détecter les pièces jointes
+          const pjElements = element.querySelectorAll('.piece-jointe, .chips-pj, [class*="fichier"]');
           pjElements.forEach(pj => {
             const pjText = pj.innerText?.trim() || pj.getAttribute('title') || '';
             if (pjText && !devoir.piecesJointes.includes(pjText)) {
@@ -122,183 +196,25 @@ const scrapePronoteData = async (page, pronoteUrl, enfant = null) => {
             }
           });
           
-          // Chercher le lien "Voir le cours"
-          if (lienDetails) {
+          // Détecter le lien "Voir le cours"
+          const coursBtn = element.querySelector('.btnCours');
+          if (coursBtn) {
             devoir.lienCours = true;
           }
           
-          // Ajouter le devoir si on a au moins une matière ou du contenu
-          if (devoir.matiere || devoir.contenu) {
+          // Ajouter seulement si on a un contenu significatif
+          if (devoir.contenu || devoir.matiere) {
             devoirsData.push(devoir);
           }
-          
         } catch (err) {
           console.error('Erreur extraction devoir:', err);
         }
-      }
-      
-      return devoirsData;
-    });
-    
-    console.log(`✓ ${devoirs.length} devoirs extraits (extraction de base)`);
-    
-    // === NAVIGATION AVANCÉE POUR EXTRAIRE LES DÉTAILS COMPLETS ===
-    console.log('\n🔍 Extraction des détails complets par navigation...');
-    
-    try {
-      // Essayer de trouver les dates affichées
-      const datesDisponibles = await page.evaluate(() => {
-        const dates = [];
-        
-        // Chercher les éléments de date dans le format "Pour lundi 05 janvier"
-        const dateElements = document.querySelectorAll('[id^="Pour"], h3, .liste-date, [class*="date"]');
-        
-        dateElements.forEach(el => {
-          const text = el.innerText?.trim();
-          if (text && text.match(/Pour\s+/i)) {
-            dates.push({
-              texte: text,
-              id: el.id
-            });
-          }
-        });
-        
-        return dates;
       });
       
-      console.log(`Dates trouvées: ${datesDisponibles.map(d => d.texte).join(', ')}`);
-      
-      // Pour chaque date, extraire les détails des devoirs
-      for (const dateInfo of datesDisponibles) {
-        console.log(`\n  📅 Traitement de: ${dateInfo.texte}`);
-        
-        // Extraire les devoirs de cette date avec leurs détails
-        const devoirsDeDate = await page.evaluate((dateTexte) => {
-          const devoirsAvecDetails = [];
-          
-          // Trouver l'élément de date
-          const dateElement = Array.from(document.querySelectorAll('[id^="Pour"], h3, .liste-date')).find(el => 
-            el.innerText?.includes(dateTexte.replace('Pour ', ''))
-          );
-          
-          if (!dateElement) return devoirsAvecDetails;
-          
-          // Parcourir les éléments après cette date jusqu'à la prochaine date
-          let currentElement = dateElement.nextElementSibling;
-          
-          while (currentElement && !currentElement.id?.startsWith('Pour')) {
-            // Chercher les conteneurs de devoirs
-            const devoirContainers = currentElement.classList.contains('conteneur-item') 
-              ? [currentElement]
-              : Array.from(currentElement.querySelectorAll('.conteneur-item'));
-            
-            devoirContainers.forEach(container => {
-              const text = container.innerText || '';
-              const lines = text.split('\n').filter(l => l.trim());
-              
-              if (lines.length > 0) {
-                const devoir = {
-                  date: dateTexte.replace('Pour ', ''),
-                  matiere: '',
-                  contenu: '',
-                  fait: false,
-                  donneLe: '',
-                  joursRestants: '',
-                  piecesJointes: [],
-                  lienCours: false,
-                  texteComplet: text.trim()
-                };
-                
-                // Extraire "Donné le"
-                const donneLe = text.match(/Donné le\s+([^\n\[]+)/i);
-                if (donneLe) {
-                  devoir.donneLe = donneLe[1].trim();
-                }
-                
-                // Extraire les jours restants
-                const joursMatch = text.match(/\[(\d+)\s*Jours?\]/i);
-                if (joursMatch) {
-                  devoir.joursRestants = joursMatch[1];
-                }
-                
-                // Extraire la matière
-                const matiereMatch = lines.find(line => 
-                  /^[A-ZÀ-Ü\s\-&]+$/.test(line) && 
-                  line.length > 2 && 
-                  line.length < 50 &&
-                  !line.includes('Fait')
-                );
-                if (matiereMatch) {
-                  devoir.matiere = matiereMatch.trim();
-                }
-                
-                // Statut
-                if (text.includes('Fait') && !text.includes('Non Fait')) {
-                  devoir.fait = true;
-                }
-                
-                // Contenu
-                devoir.contenu = lines.filter(line => 
-                  line !== devoir.matiere &&
-                  !line.includes('Fait') &&
-                  !line.includes('Donné le') &&
-                  !line.match(/\[\d+\s*Jours?\]/i) &&
-                  line.length > 3
-                ).join(' ').trim();
-                
-                // Pièces jointes
-                const pjElements = container.querySelectorAll('.piece-jointe, .chips-pj');
-                pjElements.forEach(pj => {
-                  const pjText = pj.innerText?.trim();
-                  if (pjText && !devoir.piecesJointes.includes(pjText)) {
-                    devoir.piecesJointes.push(pjText);
-                  }
-                });
-                
-                // Lien cours
-                if (container.querySelector('.btnCours')) {
-                  devoir.lienCours = true;
-                }
-                
-                if (devoir.matiere || devoir.contenu) {
-                  devoirsAvecDetails.push(devoir);
-                }
-              }
-            });
-            
-            currentElement = currentElement.nextElementSibling;
-          }
-          
-          return devoirsAvecDetails;
-        }, dateInfo.texte);
-        
-        console.log(`    ✓ ${devoirsDeDate.length} devoir(s) extrait(s) pour cette date`);
-        
-        // Fusionner avec les devoirs existants ou ajouter
-        devoirsDeDate.forEach(nouveauDevoir => {
-          // Chercher si on a déjà ce devoir (par matière)
-          const existant = devoirs.find(d => 
-            d.matiere === nouveauDevoir.matiere && 
-            d.texteComplet === nouveauDevoir.texteComplet
-          );
-          
-          if (existant) {
-            // Mettre à jour avec les nouvelles infos
-            Object.assign(existant, nouveauDevoir);
-          } else {
-            // Ajouter le nouveau devoir
-            nouveauDevoir.timestamp = new Date().toISOString();
-            devoirs.push(nouveauDevoir);
-          }
-        });
-      }
-      
-      console.log(`\n✓ ${devoirs.length} devoirs au total après extraction complète`);
-      
-    } catch (error) {
-      console.log(`⚠️ Impossible d'extraire les détails avancés: ${error.message}`);
-      console.log('Les devoirs de base ont été conservés.');
-    }
+      return devoirsData;
+    }, dateSelectionnee);
+
+    console.log(`✓ ${devoirs.length} devoirs extraits`);
 
     // === SCRAPING DE L'EMPLOI DU TEMPS ===
     console.log('\n📅 Extraction de l\'emploi du temps...');
