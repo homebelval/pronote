@@ -35,9 +35,22 @@ const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 const loginWithSSO = async (page) => {
   try {
     console.log('Ouverture de la page SSO EduConnect...');
+    
+    // 🆕 AJOUT: Headers réalistes pour simuler un vrai navigateur
+    await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+    
+    await page.setExtraHTTPHeaders({
+      'Accept-Language': 'fr-FR,fr;q=0.9,en;q=0.8',
+      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+      'Accept-Encoding': 'gzip, deflate, br',
+      'Connection': 'keep-alive',
+      'Upgrade-Insecure-Requests': '1'
+    });
+    
+    // 🆕 MODIFIÉ: Timeout augmenté à 180s
     await page.goto(SSO_URL, { 
       waitUntil: 'networkidle2',
-      timeout: 60000 
+      timeout: 180000 // 3 minutes au lieu de 1
     });
     console.log('Page SSO chargée');
 
@@ -53,7 +66,7 @@ const loginWithSSO = async (page) => {
     if (needsProfileSelection) {
       console.log('Écran de sélection détecté. Clic sur "Élève"...');
       await page.click(profilEleveSelector);
-      await page.waitForSelector('#username', { visible: true, timeout: 20000 });
+      await page.waitForSelector('#username', { visible: true, timeout: 30000 }); // 🆕 Augmenté à 30s
       console.log('✓ Formulaire de connexion affiché après sélection de profil');
       await wait(1000);
     }
@@ -109,7 +122,7 @@ const loginWithSSO = async (page) => {
 
     // Saisie des identifiants
     console.log('Attente du champ identifiant...');
-    await page.waitForSelector(usernameSelector, { visible: true, timeout: 10000 });
+    await page.waitForSelector(usernameSelector, { visible: true, timeout: 20000 }); // 🆕 Augmenté
     console.log('Saisie de l\'identifiant...');
     await page.type(usernameSelector, USERNAME, { delay: 100 });
 
@@ -123,7 +136,7 @@ const loginWithSSO = async (page) => {
     
     console.log('Clic sur le bouton de connexion...');
     await Promise.all([
-      page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 30000 }).catch(() => {}),
+      page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 }).catch(() => {}), // 🆕 Augmenté à 60s
       page.click(submitSelector).catch(async () => {
         console.log('⚠️ Tentative de soumission via formulaire...');
         await page.evaluate(() => document.querySelector('form')?.submit());
@@ -186,7 +199,7 @@ const selectEnfant = async (page, enfant) => {
     if (enfantSelectionne) {
       console.log(`✅ ${enfant.nom} sélectionné(e)`);
       await wait(2000);
-      await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 10000 }).catch(() => {});
+      await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 20000 }).catch(() => {}); // 🆕 Augmenté
       await wait(1000);
     } else {
       console.log(`⚠️  Impossible de trouver le sélecteur pour ${enfant.nom}`);
@@ -225,12 +238,30 @@ const run = async () => {
       console.log(`🎯 Scraping pour tous les enfants: ${ENFANTS.map(e => e.nom).join(', ')}\n`);
     }
     
-    browser = await puppeteer.launch({ 
-      headless: "new", 
-      args: ['--no-sandbox', '--disable-setuid-sandbox'] 
-    });
+    // 🆕 MODIFIÉ: Configuration Puppeteer pour GitHub Actions
+    const PUPPETEER_OPTIONS = {
+      headless: "new",
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-gpu',
+        '--no-first-run',
+        '--no-zygote',
+        '--disable-blink-features=AutomationControlled' // 🆕 Masquer l'automatisation
+      ],
+      ...(process.env.PUPPETEER_EXECUTABLE_PATH && {
+        executablePath: process.env.PUPPETEER_EXECUTABLE_PATH
+      })
+    };
+    
+    browser = await puppeteer.launch(PUPPETEER_OPTIONS);
 
     const page = await browser.newPage();
+    
+    // 🆕 AJOUT: Timeout global de la page augmenté
+    page.setDefaultNavigationTimeout(180000); // 3 minutes
+    
     await page.setViewport({ width: 1280, height: 900 });
 
     // Connexion SSO
@@ -238,7 +269,7 @@ const run = async () => {
     
     // Navigation vers Pronote
     console.log('\n📍 Navigation vers Pronote...');
-    await page.goto(PRONOTE_URL, { waitUntil: 'networkidle2', timeout: 60000 });
+    await page.goto(PRONOTE_URL, { waitUntil: 'networkidle2', timeout: 120000 }); // 🆕 2 minutes
     await wait(3000);
     console.log('✅ Page Pronote chargée');
     
@@ -267,7 +298,7 @@ const run = async () => {
     if (responsableButtonClicked) {
       console.log('✅ Clic sur "Responsable d\'élèves" effectué');
       await wait(3000);
-      await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 30000 }).catch(() => {});
+      await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 }).catch(() => {}); // 🆕 Augmenté
       await wait(2000);
     }
     
