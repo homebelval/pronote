@@ -30,30 +30,80 @@ const naviguerVersTravailAFaire = async (page) => {
   try {
     console.log('\n📝 Navigation vers "Travail à faire"...');
     
-    // Chercher directement "Travail à faire" (pas besoin de passer par "Cahier de textes")
+    // Attendre que la page soit complètement chargée
+    await wait(5000); // 🆕 Augmenté à 5 secondes
+    
+    // 🆕 AJOUT: Prendre un screenshot avant la recherche
+    await safeScreenshot(page, 'screenshot_avant_recherche_travail.png');
+    
+    // Chercher "Travail à faire" avec plusieurs variantes
     const travailClicked = await page.evaluate(() => {
       const allElements = Array.from(document.querySelectorAll('*'));
       const travailElement = allElements.find(el => {
         const text = el.innerText?.trim();
-        return text === 'Travail à faire';
+        // 🆕 Recherche plus flexible
+        return text === 'Travail à faire' || 
+               text === 'Travail a faire' ||
+               text?.toLowerCase().includes('travail à faire') ||
+               text?.toLowerCase().includes('travail a faire');
       });
       
       if (travailElement) {
+        console.log('🎯 Element "Travail à faire" trouvé:', travailElement.tagName, travailElement.className);
         travailElement.click();
         return true;
       }
+      
+      // 🆕 AJOUT: Chercher aussi dans les liens et boutons spécifiquement
+      const links = Array.from(document.querySelectorAll('a, button, [role="menuitem"]'));
+      const travailLink = links.find(el => {
+        const text = el.innerText?.trim() || el.textContent?.trim();
+        return text?.toLowerCase().includes('travail') && text?.toLowerCase().includes('faire');
+      });
+      
+      if (travailLink) {
+        console.log('🎯 Lien "Travail à faire" trouvé:', travailLink.tagName, travailLink.className);
+        travailLink.click();
+        return true;
+      }
+      
       return false;
     });
     
     if (!travailClicked) {
       console.log('⚠️ "Travail à faire" non trouvé, vérification si déjà dans la bonne vue...');
+      
+      // 🆕 AMÉLIORATION: Attendre encore un peu avant de vérifier
+      await wait(3000);
+      
       const alreadyInView = await page.evaluate(() => {
-        return document.body.innerText.includes('Pour lundi') || 
-               document.body.innerText.includes('Pour mardi') ||
-               document.body.innerText.includes('Vue chronologique');
+        const bodyText = document.body.innerText;
+        // 🆕 Recherche plus exhaustive
+        return bodyText.includes('Pour lundi') || 
+               bodyText.includes('Pour mardi') ||
+               bodyText.includes('Pour mercredi') ||
+               bodyText.includes('Pour jeudi') ||
+               bodyText.includes('Pour vendredi') ||
+               bodyText.includes('Pour samedi') ||
+               bodyText.includes('Pour dimanche') ||
+               bodyText.includes('Vue chronologique') ||
+               bodyText.includes('Toutes les matières');
       });
       
       if (!alreadyInView) {
+        // 🆕 AJOUT: Screenshot de debug avant erreur
+        await safeScreenshot(page, 'screenshot_error_travail_non_trouve.png');
+        
+        // 🆕 AJOUT: Afficher le contenu de la page pour debug
+        const pageContent = await page.evaluate(() => {
+          return {
+            title: document.title,
+            url: window.location.href,
+            text: document.body.innerText.substring(0, 500) // Premiers 500 caractères
+          };
+        });
+        console.log('📄 Contenu de la page:', JSON.stringify(pageContent, null, 2));
+        
         throw new Error('❌ Impossible de trouver "Travail à faire"');
       } else {
         console.log('✅ Déjà dans la bonne vue');
@@ -62,9 +112,9 @@ const naviguerVersTravailAFaire = async (page) => {
     }
     
     console.log('✅ Clic sur "Travail à faire" effectué');
-    await wait(3000);
-    await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 10000 }).catch(() => {});
-    await wait(1000);
+    await wait(5000); // 🆕 Augmenté à 5 secondes
+    await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 30000 }).catch(() => {}); // 🆕 Timeout augmenté
+    await wait(2000);
     
     await safeScreenshot(page, 'screenshot_travail_a_faire.png');
     console.log('✅ Navigation vers "Travail à faire" terminée');
