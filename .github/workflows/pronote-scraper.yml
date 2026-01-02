@@ -1,5 +1,4 @@
 name: Pronote Daily Scraper
-
 on:
   schedule:
     # Exécution tous les jours à 7h du matin (heure UTC, donc 8h en France hiver, 9h en été)
@@ -10,20 +9,20 @@ jobs:
   scrape-pronote:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-
+    
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
-
+      
       - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-
+      
       - name: 📦 Install dependencies
         run: npm ci
-
+      
       - name: 🔧 Setup Chrome dependencies
         run: |
           sudo apt-get update
@@ -49,22 +48,22 @@ jobs:
             libxkbcommon0 \
             libxrandr2 \
             xdg-utils
-
+      
       - name: 🔐 Create .env file
         run: |
           echo "PRONOTE_URL=${{ secrets.PRONOTE_URL }}" > .env
           echo "SSO_USERNAME=${{ secrets.SSO_USERNAME }}" >> .env
           echo "SSO_PASSWORD=${{ secrets.SSO_PASSWORD }}" >> .env
-
+      
       - name: 🔑 Create Firebase service account
         run: |
           echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > serviceAccountKey.json
-
+      
       - name: 🕷️ Run Pronote scraper
         run: node testScraperV2.js
         env:
           PUPPETEER_EXECUTABLE_PATH: /usr/bin/chromium-browser
-
+      
       - name: 📊 Upload screenshots (on failure)
         if: failure()
         uses: actions/upload-artifact@v4
@@ -72,7 +71,7 @@ jobs:
           name: debug-screenshots
           path: screenshot*.png
           retention-days: 7
-
+      
       - name: 📝 Upload logs (on failure)
         if: failure()
         uses: actions/upload-artifact@v4
@@ -81,13 +80,13 @@ jobs:
           path: |
             *.log
           retention-days: 7
-
+      
       - name: ✅ Success notification
         if: success()
         run: |
           echo "✅ Scraping Pronote réussi - $(date)"
           echo "📚 Devoirs synchronisés dans Firebase"
-
+      
       - name: ❌ Failure notification
         if: failure()
         run: |
