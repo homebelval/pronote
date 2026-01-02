@@ -296,6 +296,10 @@ const run = async () => {
     // Clic sur "Responsable d'élèves"
     console.log('\n🎯 Recherche du bouton "Responsable d\'élèves"...');
     
+    // 🆕 AJOUT: Attendre que la page soit stable
+    await wait(5000);
+    await page.screenshot({ path: 'screenshot_avant_clic_responsable.png', fullPage: true });
+    
     const responsableButtonClicked = await page.evaluate(() => {
       const elements = Array.from(document.querySelectorAll('a, button, div[onclick], span'));
       const responsableBtn = elements.find(el => 
@@ -307,6 +311,7 @@ const run = async () => {
       );
       
       if (responsableBtn) {
+        console.log('🎯 Bouton trouvé:', responsableBtn.tagName, responsableBtn.className);
         responsableBtn.click();
         return true;
       }
@@ -315,9 +320,31 @@ const run = async () => {
     
     if (responsableButtonClicked) {
       console.log('✅ Clic sur "Responsable d\'élèves" effectué');
+      await wait(5000); // 🆕 Augmenté à 5 secondes
+      await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 }).catch(() => {});
       await wait(3000);
-      await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 }).catch(() => {}); // 🆕 Augmenté
-      await wait(2000);
+    } else {
+      // 🆕 AJOUT: Debug si le bouton n'est pas trouvé
+      console.log('❌ Bouton "Responsable d\'élèves" NON TROUVÉ !');
+      await page.screenshot({ path: 'screenshot_responsable_non_trouve.png', fullPage: true });
+      
+      // Afficher tous les boutons disponibles
+      const pageInfo = await page.evaluate(() => {
+        const buttons = Array.from(document.querySelectorAll('button, a, [onclick]'));
+        return {
+          title: document.title,
+          url: window.location.href,
+          buttons: buttons.map(el => ({
+            tag: el.tagName,
+            text: el.innerText?.substring(0, 50) || el.textContent?.substring(0, 50),
+            id: el.id,
+            class: el.className
+          })).filter(b => b.text)
+        };
+      });
+      console.log('📄 Boutons disponibles:', JSON.stringify(pageInfo, null, 2));
+      
+      throw new Error('❌ Impossible de trouver le bouton "Responsable d\'élèves"');
     }
     
     await page.screenshot({ path: 'screenshot_pronote_after_click.png', fullPage: true });
