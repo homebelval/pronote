@@ -167,6 +167,65 @@ const loginWithSSO = async (page) => {
 };
 
 /**
+ * 🆕 NOUVELLE FONCTION: Gérer la page intermédiaire "au college 84"
+ */
+const handleIntermediatePage = async (page) => {
+  try {
+    await wait(3000);
+    
+    const currentUrl = page.url();
+    console.log(`\n🔍 URL actuelle: ${currentUrl}`);
+    
+    // Vérifier si on est sur la page intermédiaire
+    if (currentUrl.includes('aucollege84') || currentUrl.includes('wayf')) {
+      console.log('\n🔄 Page intermédiaire "au college 84" détectée...');
+      await page.screenshot({ path: 'screenshot_intermediate_page.png', fullPage: true });
+      
+      // Chercher et cliquer sur "relative"
+      const relativeClicked = await page.evaluate(() => {
+        const buttons = Array.from(document.querySelectorAll('button, a, div, [role="button"]'));
+        const relativeBtn = buttons.find(el => {
+          const text = el.innerText?.toLowerCase() || el.textContent?.toLowerCase() || '';
+          return text.includes('relative') || text === 'relative';
+        });
+        
+        if (relativeBtn) {
+          console.log('🎯 Bouton "relative" trouvé:', relativeBtn.tagName, relativeBtn.className);
+          relativeBtn.click();
+          return true;
+        }
+        return false;
+      });
+      
+      if (relativeClicked) {
+        console.log('✅ Clic sur "relative" effectué');
+        await wait(5000);
+        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 }).catch(() => {});
+        await wait(3000);
+        await page.screenshot({ path: 'screenshot_after_relative_click.png', fullPage: true });
+      } else {
+        console.log('⚠️ Bouton "relative" non trouvé');
+        
+        // Afficher les boutons disponibles pour debug
+        const availableButtons = await page.evaluate(() => {
+          return Array.from(document.querySelectorAll('button, a, div')).map(el => ({
+            tag: el.tagName,
+            text: el.innerText?.substring(0, 50) || el.textContent?.substring(0, 50),
+            class: el.className
+          })).filter(b => b.text);
+        });
+        console.log('📄 Boutons disponibles:', JSON.stringify(availableButtons, null, 2));
+      }
+    } else {
+      console.log('✅ Pas de page intermédiaire, on continue...');
+    }
+  } catch (error) {
+    console.error('⚠️ Erreur lors de la gestion de la page intermédiaire:', error.message);
+    // Ne pas throw, juste logger et continuer
+  }
+};
+
+/**
  * Sélectionner un enfant dans Pronote
  */
 const selectEnfant = async (page, enfant) => {
@@ -272,6 +331,9 @@ const run = async () => {
 
     // Connexion SSO
     await loginWithSSO(page);
+    
+    // 🆕 NOUVEAU: Gérer la page intermédiaire "au college 84"
+    await handleIntermediatePage(page);
     
     // Navigation vers Pronote
     console.log('\n📍 Navigation vers Pronote...');
