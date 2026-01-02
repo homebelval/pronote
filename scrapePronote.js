@@ -30,80 +30,30 @@ const naviguerVersTravailAFaire = async (page) => {
   try {
     console.log('\n📝 Navigation vers "Travail à faire"...');
     
-    // Attendre que la page soit complètement chargée
-    await wait(5000); // 🆕 Augmenté à 5 secondes
-    
-    // 🆕 AJOUT: Prendre un screenshot avant la recherche
-    await safeScreenshot(page, 'screenshot_avant_recherche_travail.png');
-    
-    // Chercher "Travail à faire" avec plusieurs variantes
+    // Chercher directement "Travail à faire" (pas besoin de passer par "Cahier de textes")
     const travailClicked = await page.evaluate(() => {
       const allElements = Array.from(document.querySelectorAll('*'));
       const travailElement = allElements.find(el => {
         const text = el.innerText?.trim();
-        // 🆕 Recherche plus flexible
-        return text === 'Travail à faire' || 
-               text === 'Travail a faire' ||
-               text?.toLowerCase().includes('travail à faire') ||
-               text?.toLowerCase().includes('travail a faire');
+        return text === 'Travail à faire';
       });
       
       if (travailElement) {
-        console.log('🎯 Element "Travail à faire" trouvé:', travailElement.tagName, travailElement.className);
         travailElement.click();
         return true;
       }
-      
-      // 🆕 AJOUT: Chercher aussi dans les liens et boutons spécifiquement
-      const links = Array.from(document.querySelectorAll('a, button, [role="menuitem"]'));
-      const travailLink = links.find(el => {
-        const text = el.innerText?.trim() || el.textContent?.trim();
-        return text?.toLowerCase().includes('travail') && text?.toLowerCase().includes('faire');
-      });
-      
-      if (travailLink) {
-        console.log('🎯 Lien "Travail à faire" trouvé:', travailLink.tagName, travailLink.className);
-        travailLink.click();
-        return true;
-      }
-      
       return false;
     });
     
     if (!travailClicked) {
       console.log('⚠️ "Travail à faire" non trouvé, vérification si déjà dans la bonne vue...');
-      
-      // 🆕 AMÉLIORATION: Attendre encore un peu avant de vérifier
-      await wait(3000);
-      
       const alreadyInView = await page.evaluate(() => {
-        const bodyText = document.body.innerText;
-        // 🆕 Recherche plus exhaustive
-        return bodyText.includes('Pour lundi') || 
-               bodyText.includes('Pour mardi') ||
-               bodyText.includes('Pour mercredi') ||
-               bodyText.includes('Pour jeudi') ||
-               bodyText.includes('Pour vendredi') ||
-               bodyText.includes('Pour samedi') ||
-               bodyText.includes('Pour dimanche') ||
-               bodyText.includes('Vue chronologique') ||
-               bodyText.includes('Toutes les matières');
+        return document.body.innerText.includes('Pour lundi') || 
+               document.body.innerText.includes('Pour mardi') ||
+               document.body.innerText.includes('Vue chronologique');
       });
       
       if (!alreadyInView) {
-        // 🆕 AJOUT: Screenshot de debug avant erreur
-        await safeScreenshot(page, 'screenshot_error_travail_non_trouve.png');
-        
-        // 🆕 AJOUT: Afficher le contenu de la page pour debug
-        const pageContent = await page.evaluate(() => {
-          return {
-            title: document.title,
-            url: window.location.href,
-            text: document.body.innerText.substring(0, 500) // Premiers 500 caractères
-          };
-        });
-        console.log('📄 Contenu de la page:', JSON.stringify(pageContent, null, 2));
-        
         throw new Error('❌ Impossible de trouver "Travail à faire"');
       } else {
         console.log('✅ Déjà dans la bonne vue');
@@ -112,9 +62,9 @@ const naviguerVersTravailAFaire = async (page) => {
     }
     
     console.log('✅ Clic sur "Travail à faire" effectué');
-    await wait(5000); // 🆕 Augmenté à 5 secondes
-    await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 30000 }).catch(() => {}); // 🆕 Timeout augmenté
-    await wait(2000);
+    await wait(3000);
+    await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 10000 }).catch(() => {});
+    await wait(1000);
     
     await safeScreenshot(page, 'screenshot_travail_a_faire.png');
     console.log('✅ Navigation vers "Travail à faire" terminée');
@@ -127,7 +77,6 @@ const naviguerVersTravailAFaire = async (page) => {
 
 /**
  * Scraper TOUS les devoirs directement depuis la vue "Toutes les matières"
- * Sans cliquer sur chaque matière individuellement
  */
 const scraperTousLesDevoirs = async (page) => {
   try {
@@ -164,7 +113,6 @@ const scraperTousLesDevoirs = async (page) => {
             let matiere = '';
             
             for (const line of lines) {
-              // Ligne en majuscules, ni trop courte ni trop longue
               if (line.length >= 3 && 
                   line.length < 50 && 
                   /^[A-ZÀ-Ü\s\-&']+$/.test(line) &&
@@ -192,15 +140,14 @@ const scraperTousLesDevoirs = async (page) => {
               .split('\n')
               .map(line => line.trim())
               .filter(line => {
-                // Garder seulement les lignes de contenu
                 return line.length > 0 &&
-                       !/^[A-ZÀ-Ü\s\-&']+$/.test(line) && // Pas les matières en majuscules
+                       !/^[A-ZÀ-Ü\s\-&']+$/.test(line) &&
                        !line.startsWith('Donné le') &&
                        !line.includes('[') && !line.includes(']') &&
                        !line.includes('Fait') &&
                        !line.includes('Non Fait') &&
                        !line.includes('Voir le cours') &&
-                       !line.match(/\.docx|\.pdf|\.jpg|\.png/i); // Pas les noms de fichiers
+                       !line.match(/\.docx|\.pdf|\.jpg|\.png/i);
               })
               .join(' ')
               .trim();
@@ -223,7 +170,6 @@ const scraperTousLesDevoirs = async (page) => {
               }
             });
             
-            // Arrêter après avoir traité le UL, passer à la date suivante
             break;
           }
           
@@ -268,13 +214,11 @@ const scrapePronoteData = async (page, pronoteUrl, enfant = null) => {
     console.log(`🔍 DÉBUT DU SCRAPING PRONOTE${enfantInfo}`);
     console.log('='.repeat(80));
     
-    // La page Pronote est déjà chargée
     await wait(2000);
     
-    // 1. Navigation vers "Cahier de textes > Travail à faire"
     await naviguerVersTravailAFaire(page);
+    await scraperTousLesDevoirs(page);
     
-    // 2. Scraping de tous les devoirs
     const devoirs = await scraperTousLesDevoirs(page);
     
     console.log(`\n${'='.repeat(80)}`);
@@ -282,7 +226,6 @@ const scrapePronoteData = async (page, pronoteUrl, enfant = null) => {
     console.log(`📊 Total: ${devoirs.length} devoirs scrapés`);
     console.log('='.repeat(80));
     
-    // Préparer les données complètes
     const scrapedData = {
       devoirs: devoirs,
       scrapedAt: new Date().toISOString(),
@@ -292,7 +235,6 @@ const scrapePronoteData = async (page, pronoteUrl, enfant = null) => {
       }
     };
     
-    // Calculer les stats par matière
     devoirs.forEach(devoir => {
       if (!scrapedData.stats.parMatiere[devoir.matiere]) {
         scrapedData.stats.parMatiere[devoir.matiere] = 0;
@@ -300,7 +242,6 @@ const scrapePronoteData = async (page, pronoteUrl, enfant = null) => {
       scrapedData.stats.parMatiere[devoir.matiere]++;
     });
     
-    // Sauvegarder dans Firestore
     await saveToFirestore(scrapedData, enfant);
     
     return scrapedData;
@@ -312,7 +253,7 @@ const scrapePronoteData = async (page, pronoteUrl, enfant = null) => {
 };
 
 /**
- * Fonction de nettoyage des snapshots du mois précédent
+ * Fonction de nettoyage des snapshots
  */
 const cleanOldSnapshots = async () => {
   try {
@@ -323,8 +264,6 @@ const cleanOldSnapshots = async () => {
     const currentYear = now.getFullYear();
     
     const startOfCurrentMonth = new Date(currentYear, currentMonth, 1);
-    
-    console.log(`📅 Mois en cours: ${startOfCurrentMonth.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })}`);
     
     const oldSnapshotsQuery = db.collection('pronote_snapshots')
       .where('lastUpdate', '<', startOfCurrentMonth);
@@ -345,10 +284,10 @@ const cleanOldSnapshots = async () => {
     });
     
     await batch.commit();
-    console.log(`✓ ${deleteCount} snapshot(s) du mois précédent supprimé(s)`);
+    console.log(`✓ ${deleteCount} snapshot(s) supprimé(s)`);
     
   } catch (error) {
-    console.error('⚠️ Erreur lors du nettoyage des snapshots:', error.message);
+    console.error('⚠️ Erreur nettoyage snapshots:', error.message);
   }
 };
 
@@ -359,25 +298,20 @@ const saveToFirestore = async (data, enfant = null) => {
   try {
     const enfantInfo = enfant ? ` pour ${enfant.nom}` : '';
     console.log(`\n💾 Envoi des données vers Firestore${enfantInfo}...`);
-    console.log('⚠️  Mode: ÉCRASEMENT des données existantes\n');
     
     const timestamp = admin.firestore.FieldValue.serverTimestamp();
 
     let devoirsRef;
     
     if (enfant && enfant.id) {
-      console.log(`📂 Chemin de sauvegarde: children/${enfant.id}/pronote/`);
-      
       devoirsRef = db.collection('children')
         .doc(enfant.id)
         .collection('pronote')
         .doc('devoirs');
     } else {
-      console.log(`📂 Chemin de sauvegarde: pronote/`);
       devoirsRef = db.collection('pronote').doc('devoirs');
     }
 
-    // ÉCRASER les devoirs
     if (data.devoirs && data.devoirs.length > 0) {
       await devoirsRef.set({
         devoirs: data.devoirs,
@@ -389,16 +323,11 @@ const saveToFirestore = async (data, enfant = null) => {
       }, { merge: false });
       
       console.log(`✓ ${data.devoirs.length} devoirs sauvegardés${enfantInfo}`);
-      console.log('\n📊 Répartition par matière:');
-      Object.entries(data.stats.parMatiere).forEach(([matiere, count]) => {
-        console.log(`   - ${matiere}: ${count} devoir(s)`);
-      });
     } else {
       await devoirsRef.delete().catch(() => {});
       console.log(`⚠️  Aucun devoir trouvé${enfantInfo}`);
     }
 
-    // Sauvegarder un snapshot complet pour l'historique
     const snapshotRef = db.collection('pronote_snapshots').doc();
     await snapshotRef.set({
       ...data,
@@ -408,13 +337,10 @@ const saveToFirestore = async (data, enfant = null) => {
     });
     console.log(`✓ Snapshot complet sauvegardé${enfantInfo}`);
 
-    console.log('\n✅ Toutes les données ont été envoyées à Firestore avec succès');
-
-    // Nettoyer les anciens snapshots
     await cleanOldSnapshots();
 
   } catch (error) {
-    console.error('❌ Erreur lors de la sauvegarde Firestore:', error.message);
+    console.error('❌ Erreur sauvegarde Firestore:', error.message);
     throw error;
   }
 };

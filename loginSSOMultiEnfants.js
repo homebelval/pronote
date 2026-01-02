@@ -1,86 +1,87 @@
-// Charger les variables d'environnement depuis le fichier .env
+// Charger les variables d'environnement
 require('dotenv').config();
 
 const puppeteer = require('puppeteer');
 const { scrapePronoteData } = require('./scrapePronote');
 
 // URLs
-const AUCOLLEGE84_URL = 'https://www.aucollege84.vaucluse.fr/auth/saml/wayf?callback=https%3A%2F%2Fwww.aucollege84.vaucluse.fr%2F#/';
+const SSO_URL = 'https://educonnect.education.gouv.fr/idp/profile/SAML2/Redirect/SSO?execution=e1s2';
 const PRONOTE_URL = process.env.PRONOTE_URL;
 
-// Récupérer les identifiants depuis les variables d'environnement
 const USERNAME = process.env.SSO_USERNAME;
 const PASSWORD = process.env.SSO_PASSWORD;
 
 // Configuration des enfants
 const ENFANTS = [
   {
-    id: 'zxvjGHsYdlwt2I6bhGBg', // ID Firestore de Kélia
+    id: 'zxvjGHsYdlwt2I6bhGBg',
     nom: 'Kélia',
     selecteur: 'BELVAL Kélia'
   },
   {
-    id: 'dZyDqjwOabEaLff8qK27', // ID Firestore de Maëlie
+    id: 'dZyDqjwOabEaLff8qK27',
     nom: 'Maëlie',
     selecteur: 'BELVAL Maëlie'
   }
 ];
 
-// Fonction helper pour remplacer waitForTimeout
 const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 /**
- * Fonction de connexion via SSO (appelée automatiquement après le clic sur "Responsable d'élèves")
+ * Fonction de connexion via SSO
  */
-const handleSSOLogin = async (page) => {
+const loginWithSSO = async (page) => {
   try {
-    console.log('\n🔐 Page SSO EduConnect détectée...');
-    
-    // Attendre que la page SSO charge
-    await wait(3000);
-    await page.screenshot({ path: 'screenshot_sso_page.png', fullPage: true });
+    console.log('Ouverture de la page SSO EduConnect...');
+    await page.goto(SSO_URL, { 
+      waitUntil: 'networkidle2',
+      timeout: 60000 
+    });
+    console.log('Page SSO chargée');
+
+    await wait(2000);
+    await page.screenshot({ path: 'screenshot_initial.png', fullPage: true });
+    console.log('📸 Capture initiale prise');
 
     // Sélection profil élève
-    console.log('Vérification de l\'écran de sélection de profil...');
     const profilEleveSelector = '#bouton_eleve';
-    
     const needsProfileSelection = await page.$(profilEleveSelector);
     if (needsProfileSelection) {
       console.log('Écran de sélection détecté. Clic sur "Élève"...');
       await page.click(profilEleveSelector);
-      await page.waitForSelector('#username', { visible: true, timeout: 30000 });
+      await page.waitForSelector('#username', { visible: true, timeout: 20000 });
       console.log('✓ Formulaire de connexion affiché');
       await wait(1000);
     }
 
-    // Déterminer les sélecteurs
-    const usernameSelector = '#username';
-    const passwordSelector = '#password';
-    const submitSelector = '#bouton_valider';
-
     // Saisie des identifiants
-    console.log('Saisie des identifiants SSO...');
-    await page.waitForSelector(usernameSelector, { visible: true, timeout: 20000 });
-    await page.type(usernameSelector, USERNAME, { delay: 100 });
-    await page.type(passwordSelector, PASSWORD, { delay: 100 });
+    console.log('Saisie de l\'identifiant...');
+    await page.waitForSelector('#username', { visible: true, timeout: 10000 });
+    await page.type('#username', USERNAME, { delay: 100 });
+
+    console.log('Saisie du mot de passe...');
+    await page.type('#password', PASSWORD, { delay: 100 });
 
     await wait(1000);
-    await page.screenshot({ path: 'screenshot_sso_filled.png', fullPage: true });
+    await page.screenshot({ path: 'screenshot_after_typing.png', fullPage: true });
 
-    console.log('Soumission du formulaire SSO...');
+    console.log('Clic sur le bouton de connexion...');
     await Promise.all([
-      page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 120000 }),
-      page.click(submitSelector)
+      page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 30000 }).catch(() => {}),
+      page.click('#bouton_valider').catch(async () => {
+        await page.evaluate(() => document.querySelector('form')?.submit());
+      })
     ]);
     
+    console.log('✓ Formulaire soumis');
     await wait(3000);
-    await page.screenshot({ path: 'screenshot_after_sso.png', fullPage: true });
+    await page.screenshot({ path: 'screenshot_after_login.png', fullPage: true });
 
     console.log('✅ Connexion SSO réussie');
 
   } catch (error) {
     console.error('❌ Erreur lors de la connexion SSO:', error.message);
-    await page.screenshot({ path: 'screenshot_sso_error.png', fullPage: true });
+    await page.screenshot({ path: 'screenshot_error.png', fullPage: true });
     throw error;
   }
 };
@@ -117,7 +118,7 @@ const selectEnfant = async (page, enfant) => {
     if (enfantSelectionne) {
       console.log(`✅ ${enfant.nom} sélectionné(e)`);
       await wait(2000);
-      await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 20000 }).catch(() => {});
+      await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 10000 }).catch(() => {});
       await wait(1000);
     } else {
       console.log(`⚠️  Impossible de trouver le sélecteur pour ${enfant.nom}`);
@@ -134,7 +135,7 @@ const selectEnfant = async (page, enfant) => {
 const run = async () => {
   let browser = null;
   try {
-    console.log('=== DÉMARRAGE DU SCRIPT PRONOTE ===\n');
+    console.log('=== DÉMARRAGE DU SCRIPT DE SCRAPING PRONOTE V2 ===\n');
     
     const enfantArg = process.argv[2];
     let enfantsToScrape = ENFANTS;
@@ -149,139 +150,67 @@ const run = async () => {
         enfantsToScrape = [enfantFound];
         console.log(`🎯 Scraping uniquement pour: ${enfantFound.nom}\n`);
       } else {
-        console.log(`⚠️  Enfant "${enfantArg}" non trouvé. Scraping pour tous.\n`);
+        console.log(`⚠️ Enfant "${enfantArg}" non trouvé.\n`);
       }
     } else {
       console.log(`🎯 Scraping pour tous les enfants: ${ENFANTS.map(e => e.nom).join(', ')}\n`);
     }
     
-    const PUPPETEER_OPTIONS = {
-      headless: "new",
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--disable-gpu',
-        '--no-first-run',
-        '--no-zygote',
-        '--disable-blink-features=AutomationControlled'
-      ],
-      ...(process.env.PUPPETEER_EXECUTABLE_PATH && {
-        executablePath: process.env.PUPPETEER_EXECUTABLE_PATH
-      })
-    };
-    
-    browser = await puppeteer.launch(PUPPETEER_OPTIONS);
-    const page = await browser.newPage();
-    
-    // Headers réalistes
-    await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
-    await page.setExtraHTTPHeaders({
-      'Accept-Language': 'fr-FR,fr;q=0.9,en;q=0.8',
-      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    browser = await puppeteer.launch({ 
+      headless: "new", 
+      args: ['--no-sandbox', '--disable-setuid-sandbox'] 
     });
-    
-    await page.setCacheEnabled(true);
-    page.setDefaultNavigationTimeout(180000);
+
+    const page = await browser.newPage();
     await page.setViewport({ width: 1280, height: 900 });
 
-    // ===================================================================
-    // ÉTAPE 1 : Aller sur "au college 84" et cliquer sur "Responsable d'élèves"
-    // ===================================================================
-    console.log('📍 Étape 1/3 : Navigation vers "au college 84"...');
-    await page.goto(AUCOLLEGE84_URL, { waitUntil: 'networkidle2', timeout: 120000 });
-    await wait(5000);
+    // Connexion SSO
+    await loginWithSSO(page);
     
-    let currentUrl = page.url();
-    console.log(`URL actuelle: ${currentUrl}`);
-    await page.screenshot({ path: 'screenshot_aucollege84_initial.png', fullPage: true });
+    // Navigation vers Pronote
+    console.log('\n🔗 Navigation vers Pronote...');
+    await page.goto(PRONOTE_URL, { waitUntil: 'networkidle2', timeout: 60000 });
+    await wait(3000);
+    console.log('✅ Page Pronote chargée');
     
+    await page.screenshot({ path: 'screenshot_pronote_choix.png', fullPage: true });
+    
+    // Clic sur "Responsable d'élèves"
     console.log('\n🎯 Recherche du bouton "Responsable d\'élèves"...');
     
-    const responsableClicked = await page.evaluate(() => {
-      const elements = Array.from(document.querySelectorAll('*'));
-      
-      const responsableBtn = elements.find(el => {
-        const text = (el.innerText || el.textContent || '').trim();
-        return text.includes('Responsable') && text.includes('élève');
-      });
+    const responsableButtonClicked = await page.evaluate(() => {
+      const elements = Array.from(document.querySelectorAll('a, button, div[onclick], span'));
+      const responsableBtn = elements.find(el => 
+        el.innerText && (
+          el.innerText.includes('Responsable d\'élève') || 
+          el.innerText.includes('Responsable d\'élèves') ||
+          el.innerText.includes('Parent')
+        )
+      );
       
       if (responsableBtn) {
-        console.log('🎯 Bouton trouvé!');
         responsableBtn.click();
         return true;
       }
       return false;
     });
     
-    if (!responsableClicked) {
-      console.log('❌ Bouton "Responsable d\'élèves" NON TROUVÉ');
-      
-      const clickables = await page.evaluate(() => {
-        return Array.from(document.querySelectorAll('*'))
-          .map(el => ({
-            tag: el.tagName,
-            text: (el.innerText || el.textContent || '').substring(0, 80).trim()
-          }))
-          .filter(b => b.text && b.text.length > 5 && b.text.length < 100);
-      });
-      console.log('📋 Textes visibles:', JSON.stringify(clickables.slice(0, 20), null, 2));
-      
-      throw new Error('Impossible de trouver "Responsable d\'élèves"');
+    if (responsableButtonClicked) {
+      console.log('✅ Clic sur "Responsable d\'élèves" effectué');
+      await wait(3000);
+      await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 30000 }).catch(() => {});
+      await wait(2000);
     }
     
-    console.log('✅ Clic sur "Responsable d\'élèves" effectué');
+    await page.screenshot({ path: 'screenshot_pronote_after_click.png', fullPage: true });
     
-    // ===================================================================
-    // ÉTAPE 2 : Attendre la redirection vers SSO et se connecter
-    // ===================================================================
-    console.log('\n📍 Étape 2/3 : Attente de la redirection vers SSO EduConnect...');
-    await wait(3000);
-    
-    // Attendre soit une navigation, soit que l'URL change
-    await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 }).catch(() => {});
-    await wait(3000);
-    
-    currentUrl = page.url();
-    console.log(`URL après clic: ${currentUrl}`);
-    
-    if (currentUrl.includes('educonnect')) {
-      await handleSSOLogin(page);
-    } else {
-      console.log('⚠️ Pas de redirection vers SSO détectée');
-      throw new Error('Redirection SSO non détectée');
-    }
-    
-    // ===================================================================
-    // ÉTAPE 3 : Attendre la redirection vers Pronote
-    // ===================================================================
-    console.log('\n📍 Étape 3/3 : Attente de la redirection vers Pronote...');
-    await wait(5000);
-    
-    currentUrl = page.url();
-    console.log(`URL actuelle: ${currentUrl}`);
-    
-    if (currentUrl.includes('pronote') || currentUrl.includes('index-education')) {
-      console.log('✅ Redirection vers Pronote réussie !');
-    } else {
-      console.log('⚠️ Pas sur Pronote, URL:', currentUrl);
-      throw new Error('Redirection Pronote non détectée');
-    }
-    
-    await page.screenshot({ path: 'screenshot_pronote_interface.png', fullPage: true });
-    console.log('\n✅ Accès à Pronote OK, début du scraping...\n');
-    
-    // ===================================================================
-    // SCRAPING POUR CHAQUE ENFANT
-    // ===================================================================
+    // Scraper pour chaque enfant
     for (const enfant of enfantsToScrape) {
       console.log('\n' + '='.repeat(80));
       console.log(`👧 SCRAPING POUR: ${enfant.nom.toUpperCase()}`);
       console.log('='.repeat(80));
       
       await selectEnfant(page, enfant);
-      
-      console.log(`\n=== LANCEMENT DU SCRAPING PRONOTE POUR ${enfant.nom} ===`);
       await scrapePronoteData(page, PRONOTE_URL, enfant);
       
       console.log(`\n✅ Scraping terminé pour ${enfant.nom}`);
@@ -297,7 +226,6 @@ const run = async () => {
     
   } catch (error) {
     console.error('\n❌ ERREUR FATALE:', error.message);
-    console.error(error.stack);
     process.exit(1);
   } finally {
     if (browser) await browser.close();
@@ -308,4 +236,4 @@ if (require.main === module) {
   run();
 }
 
-module.exports = { run };
+module.exports = { loginWithSSO, selectEnfant, run };
