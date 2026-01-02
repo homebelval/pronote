@@ -1,4 +1,36 @@
+# Environment variables
 .env
+.env.local
+.env.*.local
+
+# Firebase
 serviceAccountKey.json
-screenshot_*.png
+serviceAccount.json
+
+# Node modules
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+*.log
+logs/
+
+# Screenshots (debug)
+screenshot*.png
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build
+dist/
+build/
