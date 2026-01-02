@@ -155,6 +155,9 @@ const loginWithSSO = async (page) => {
     if (errorMessage) throw new Error(`Erreur de connexion: ${errorMessage}`);
 
     console.log('✅ Connexion SSO réussie');
+    
+    // 🆕 AJOUT: Attendre plus longtemps pour que les cookies se propagent
+    await wait(5000);
 
   } catch (error) {
     console.error('❌ Erreur lors de la connexion SSO:', error.message);
@@ -259,6 +262,9 @@ const run = async () => {
 
     const page = await browser.newPage();
     
+    // 🆕 AJOUT: Activer la persistance des cookies
+    await page.setCacheEnabled(true);
+    
     // 🆕 AJOUT: Timeout global de la page augmenté
     page.setDefaultNavigationTimeout(180000); // 3 minutes
     
@@ -270,8 +276,20 @@ const run = async () => {
     // Navigation vers Pronote
     console.log('\n📍 Navigation vers Pronote...');
     await page.goto(PRONOTE_URL, { waitUntil: 'networkidle2', timeout: 120000 }); // 🆕 2 minutes
-    await wait(3000);
+    await wait(5000); // 🆕 Augmenté à 5 secondes
     console.log('✅ Page Pronote chargée');
+    
+    // 🆕 AJOUT: Vérifier si on est redirigé vers le login
+    const currentUrl = page.url();
+    if (currentUrl.includes('wayf') || currentUrl.includes('login') || currentUrl.includes('auth')) {
+      console.log('⚠️ Redirection vers login détectée, nouvelle tentative...');
+      await page.screenshot({ path: 'screenshot_redirect_login.png', fullPage: true });
+      
+      // Attendre et réessayer
+      await wait(5000);
+      await page.goto(PRONOTE_URL, { waitUntil: 'networkidle2', timeout: 120000 });
+      await wait(3000);
+    }
     
     await page.screenshot({ path: 'screenshot_pronote_choix.png', fullPage: true });
     
