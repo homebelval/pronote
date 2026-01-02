@@ -2,7 +2,7 @@
 require('dotenv').config();
 
 const puppeteer = require('puppeteer');
-const { scrapePronoteData } = require('./scrapePronote');
+const { scrapePronoteData } = require('./scrapePronoteV3');
 
 // URLs
 const SSO_URL = 'https://educonnect.education.gouv.fr/idp/profile/SAML2/Redirect/SSO?execution=e1s2';
@@ -78,6 +78,41 @@ const loginWithSSO = async (page) => {
     await page.screenshot({ path: 'screenshot_after_login.png', fullPage: true });
 
     console.log('✅ Connexion SSO réussie');
+    
+    // 🆕 AJOUT: Vérifier si on est redirigé vers "au college 84"
+    await wait(3000);
+    const currentUrl = page.url();
+    console.log(`📍 URL après SSO: ${currentUrl}`);
+    
+    if (currentUrl.includes('aucollege84') || currentUrl.includes('wayf')) {
+      console.log('🔄 Détection de la page "au college 84"...');
+      await page.screenshot({ path: 'screenshot_aucollege84.png', fullPage: true });
+      
+      // Cliquer sur "Responsable d'élèves" sur cette page
+      console.log('🎯 Clic sur "Responsable d\'élèves" (page au college 84)...');
+      const clicked = await page.evaluate(() => {
+        const elements = Array.from(document.querySelectorAll('*'));
+        const btn = elements.find(el => {
+          const text = (el.innerText || el.textContent || '').trim();
+          return text.includes('Responsable') && text.includes('élève');
+        });
+        if (btn) {
+          btn.click();
+          return true;
+        }
+        return false;
+      });
+      
+      if (clicked) {
+        console.log('✅ Clic effectué, attente de la redirection vers Pronote...');
+        await wait(5000);
+        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 }).catch(() => {});
+        await wait(3000);
+        console.log(`📍 Nouvelle URL: ${page.url()}`);
+      } else {
+        console.log('⚠️ Bouton non trouvé sur la page au college 84');
+      }
+    }
 
   } catch (error) {
     console.error('❌ Erreur lors de la connexion SSO:', error.message);
